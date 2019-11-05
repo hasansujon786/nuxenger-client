@@ -1,7 +1,7 @@
 {
-  "name": "nuxanger",
+  "name": "nuxenger",
   "version": "1.0.0",
-  "description": "My tiptop Nuxt.js project",
+  "description": "An instant chat application",
   "author": "Hasan Mahmud",
   "private": true,
   "scripts": {
