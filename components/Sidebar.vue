@@ -1,5 +1,5 @@
 <template>
-  <div class="w-64 border-r">
+  <div class="border-r" style="width: 300px">
     <div class="overflow-y-scroll custom-scrollbar" style="height: calc(100vh - 64px)">
       <recent-item-list />
     </div>
