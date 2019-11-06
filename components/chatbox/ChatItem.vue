@@ -1,7 +1,7 @@
 <template>
   <div class="chat-item flex items-center" :class="{ right: isUser }">
     <div class="avater-wrapper self-start">
-      <avater />
+      <avater size="sm" />
     </div>
     <div class="mx-1">
       <chat-bubble msg="hello" />
@@ -29,7 +29,6 @@ export default {
 
 <style scoped lang="scss">
 .chat-item {
-  // border: 1px solid rgb(216, 214, 214);
   &.right {
     justify-content: flex-end;
     .avater-wrapper {
