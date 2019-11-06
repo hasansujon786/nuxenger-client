@@ -1,0 +1,30 @@
+.custom-scrollbar {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  & > div {
+    // margin-right: -5px;
+  }
+  &::-webkit-scrollbar {
+    // width
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    // set style to track
+    // background: #f7f7f7;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    // sets style to thumb
+    background: rgba(136, 136, 136, 0);
+    transition: all;
+    transition-duration: 3s;
+    border-radius: 10px;
+  }
+}
+
+.custom-scrollbar:hover {
+  &::-webkit-scrollbar-thumb {
+    // sets style to thumb
+    background: rgba(136, 136, 136, 0.5);
+  }
+}
