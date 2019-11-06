@@ -1,9 +1,17 @@
 <template>
-  <div class="w-64 border">sidebar</div>
+  <div class="w-64 border-r">
+    <div class="overflow-y-scroll " style="height: calc(100vh - 64px)">
+      <recent-item-list />
+    </div>
+  </div>
 </template>
 
 <script>
-export default {}
-</script>
+import RecentItemList from '~/components/sidebar/RecentItemList.vue'
 
-<style></style>
+export default {
+  components: {
+    RecentItemList
+  }
+}
+</script>
