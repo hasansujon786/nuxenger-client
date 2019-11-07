@@ -1,5 +1,5 @@
 <template>
-  <section class="main-app-layout h-screen text-gray-900 font-sans">
+  <section class="main-app-layout h-screen text-gray-800 font-sans">
     <QuickLink />
     <Navbar />
     <main style="grid-area: main" class="flex">

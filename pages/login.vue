@@ -6,17 +6,18 @@
       <p class="-mt-1 mb-6 text-sm text-gray-600">Welcome back! Please login to your account.</p>
 
       <form @submit.prevent="handleSubmit" class="" style="width: 400px">
-        <div>
-          <ui-input label="Email" type="email" placeholder="Enter your email" />
-        </div>
+        <ui-input label="Email" type="email" placeholder="Enter your email" />
 
-        <div class="mt-3">
-          <ui-input label="Password" type="password" placeholder="Enter your password" />
-        </div>
+        <ui-input label="Password" type="password" placeholder="Enter your password" />
 
-        <div class="mt-6 flex justify-between">
-          <ui-button>Sign in</ui-button>
-          <ui-button type="button" @click="$router.push('/singup')">Sign up</ui-button>
+        <div class="mt-8">
+          <ui-button class="w-full" primary @click="$router.push('/')">Sign in</ui-button>
+          <!-- <div class="text-center mt-2">
+            <span class="font-bold text-sm text-gray-500">OR</span>
+          </div> -->
+          <ui-button class="w-full mt-3" type="button" @click="$router.push('/singup')"
+            >Or sing up</ui-button
+          >
         </div>
       </form>
     </section>

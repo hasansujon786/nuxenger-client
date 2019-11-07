@@ -1,7 +1,7 @@
 <template>
   <div class="signup-page h-screen bg-gray-100">
     <section class="bg-orange-300">img</section>
-    <section class="flex flex-col items-center pt-40">
+    <section class="flex flex-col items-center pt-24">
       <h1 class="text-5xl font-semibold">nuxenger</h1>
       <p class="-mt-1 mb-6 text-sm text-gray-600">Welcome back! Please login to your account.</p>
 
@@ -9,11 +9,16 @@
         <ui-input label="Fullname" type="text" placeholder="Enter your fullname" />
         <ui-input label="Username" type="text" placeholder="Enter a username" />
         <ui-input label="Email" type="email" placeholder="Enter your email" />
-        <ui-input label="Password" type="password" placeholder="Enter your password" />
+        <ui-input label="Password" type="password" placeholder="Enter a new password" />
 
-        <div class="mt-6 flex justify-between">
-          <ui-button>Sign up</ui-button>
-          <ui-button type="button" @click="$router.push('/login')">Sign in</ui-button>
+        <div class="mt-8 ">
+          <ui-button class="w-full" primary>Sign up</ui-button>
+          <!-- <div class="text-center mt-2">
+            <span class="font-bold text-sm text-gray-500">OR</span>
+          </div> -->
+          <ui-button class="w-full mt-3" type="button" @click="$router.push('/login')"
+            >Or sing in</ui-button
+          >
         </div>
       </form>
     </section>
