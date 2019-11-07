@@ -1,26 +1,15 @@
 <template>
-  <div class="signup-page h-screen">
+  <div class="signup-page h-screen bg-gray-100">
     <section class="bg-orange-300">img</section>
-    <section class="flex flex-col items-center justify-center">
+    <section class="flex flex-col items-center pt-40">
       <h1 class="text-5xl font-semibold">nuxenger</h1>
       <p class="-mt-1 mb-6 text-sm text-gray-600">Welcome back! Please login to your account.</p>
 
       <form @submit.prevent="handleSubmit" class="" style="width: 400px">
-        <div>
-          <ui-input label="Fullname" type="text" placeholder="Enter your fullname" />
-        </div>
-
-        <div>
-          <ui-input label="Username" type="text" placeholder="Enter a username" />
-        </div>
-
-        <div>
-          <ui-input label="Email" type="email" placeholder="Enter your email" />
-        </div>
-
-        <div class="mt-3">
-          <ui-input label="Password" type="password" placeholder="Enter your password" />
-        </div>
+        <ui-input label="Fullname" type="text" placeholder="Enter your fullname" />
+        <ui-input label="Username" type="text" placeholder="Enter a username" />
+        <ui-input label="Email" type="email" placeholder="Enter your email" />
+        <ui-input label="Password" type="password" placeholder="Enter your password" />
 
         <div class="mt-6 flex justify-between">
           <ui-button>Sign up</ui-button>

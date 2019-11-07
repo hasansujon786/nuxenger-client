@@ -1,6 +1,6 @@
 <template>
   <label class="">
-    <span class="font-semibold mb-1 inline-block tracking-wide text-sm text-gray-800">{{
+    <span class="font-semibold mb-1 inline-block tracking-wide text-sm text-gray-700">{{
       label
     }}</span>
     <input

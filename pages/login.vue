@@ -1,7 +1,7 @@
 <template>
-  <div class="login-page h-screen">
+  <div class="login-page h-screen bg-gray-100">
     <section class="bg-orange-300">img</section>
-    <section class="flex flex-col items-center justify-center">
+    <section class="flex flex-col items-center pt-40">
       <h1 class="text-5xl font-semibold">nuxenger</h1>
       <p class="-mt-1 mb-6 text-sm text-gray-600">Welcome back! Please login to your account.</p>
 

@@ -5,7 +5,6 @@
       <a class="mt-2" href="#"><icon icon="message-sq" size="lg"/></a>
       <a class="mt-2" href="#"><icon icon="zap" size="lg"/></a>
       <a class="mt-2" href="#"><icon icon="plus" size="lg"/></a>
-      <a class="mt-2" href="#"><icon icon="user" size="lg"/></a>
     </section>
   </div>
 </template>
@@ -18,4 +17,3 @@ export default {
   }
 }
 </script>
-

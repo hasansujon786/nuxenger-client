@@ -1,7 +1,7 @@
 <template>
   <form class="px-4 py-6 border">
     <div
-      class="chat-input h-12 w-full rounded-lg border border-gray-400 text-gray-900 flex items-stretch truncate tracking-wide text-base"
+      class="chat-input h-12 w-full rounded-lg border-2 border-gray-400 text-gray-900 flex items-stretch truncate tracking-wide text-base"
       style="background: #EDF2F7"
     >
       <input
@@ -10,7 +10,7 @@
         placeholder="Type a message..."
       />
       <input
-        class="outline-none px-3 bg-gray-300 border-l border-gray-400 font-semibold focus:bg-gray-500"
+        class="outline-none px-3 bg-gray-400 border-l border-gray-400 text-sm text-gray-600"
         type="submit"
         value="Send"
       />
@@ -26,7 +26,7 @@ export default {}
 .chat-input {
   &:focus-within {
     & {
-      border-color: #a0aec0;
+      @apply border-gray-500;
     }
   }
 }

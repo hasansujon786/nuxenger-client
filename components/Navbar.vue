@@ -1,7 +1,7 @@
 <template>
   <nav class="bg-gray-100 border-b flex " style="grid-area: nav">
     <section class="border-r flex items-center px-3" style="width: 300px">
-      <h1 style="font-size: 40px" class="leading-none font-semibold leading-none -mt-2 mr-auto">
+      <h1 style="font-size: 38px" class="leading-none text-gray-800 font-bold leading-none -mt-2 mr-auto">
         nuxenger
       </h1>
 
