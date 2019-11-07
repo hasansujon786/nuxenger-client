@@ -1,19 +1,21 @@
 <template>
   <nuxt-link
     :to="link"
-    class="recent-item px-3 block border-b py-2 hover:bg-gray-200 flex items-center"
+    class="recent-item block mt-1 px-2 py-2 flex items-center rounded-lg hover:bg-gray-200 "
   >
     <section>
-      <avater size="md" />
+      <avater size="lg" />
     </section>
 
-    <section class="ml-2 text-sm truncate">
+    <section class="flex-grow ml-1 text-sm bg-gray-50 truncate">
       <div class="flex justify-between items-baseline">
         <p class="font-semibold">Bruce Wayn</p>
         <span class="text-gray-600" style="font-size: 13px">Tue</span>
       </div>
-      <p class="text-gray-600 mt-1" style="font-size: 13px">
-        alias ducimus ullam facilis nostrum blanditiis inventore error doloribus id.
+      <p class="text-gray-600 mt-1 truncate" style="font-size: 13px">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat temporibus aliquid odit
+        repellendus fuga earum quaerat quidem vero, laudantium modi similique iste laborum corporis
+        sit at aperiam amet in saepe.
       </p>
     </section>
   </nuxt-link>
@@ -42,11 +44,11 @@ export default {
 </script>
 
 <style scoped>
-.recent-item {
+/* .recent-item {
   border-left: 4px solid transparent;
-}
+} */
 .recent-item.nuxt-link-active {
-  border-left: 4px solid #38a169;
+  /* border-left: 4px solid #38a169; */
   @apply bg-gray-200;
 }
 </style>

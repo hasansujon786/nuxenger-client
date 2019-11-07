@@ -4,7 +4,8 @@
     <Navbar />
     <main style="grid-area: main" class="flex">
       <Sidebar />
-      <div class="flex-grow">
+      <div class="flex-grow relative">
+        <ui-new-chat-model class="" style="top: 1rem; left: 1rem" />
         <nuxt />
       </div>
     </main>
@@ -12,20 +13,26 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import Sidebar from '~/components/Sidebar.vue'
 import QuickLink from '~/components/QuickLink.vue'
 import Navbar from '~/components/Navbar.vue'
+import NewChatModel from '~/components/ui/NewChatModel.vue'
 
 export default {
+  name: 'applayout',
+  computed: {},
+  methods: {},
   components: {
     Sidebar,
     QuickLink,
-    Navbar
+    Navbar,
+    uiNewChatModel: NewChatModel
   }
 }
 </script>
 
-<style>
+<style scoped>
 .main-app-layout {
   display: grid;
   grid-template-rows: 64px auto;
