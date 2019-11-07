@@ -1,5 +1,5 @@
 <template>
-  <section class="h-screen bg-gray-000">
+  <section class="h-screen bg-gray-900 text-white">
     <div class="p-40">
       <ui-button disabled></ui-button>
       <ui-button primary></ui-button>

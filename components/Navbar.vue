@@ -1,12 +1,21 @@
 <template>
   <nav class="bg-gray-100 border-b flex " style="grid-area: nav">
     <section class="border-r flex items-center px-3" style="width: 300px">
-      <h1 style="font-size: 38px" class="leading-none text-gray-800 font-bold leading-none -mt-2 mr-auto">
+      <h1
+        style="font-size: 38px"
+        class="leading-none text-gray-800 font-bold leading-none -mt-2 mr-auto"
+      >
         nuxenger
       </h1>
 
       <ui-icon icon="bell" />
-      <ui-dropdown @item-click="test" :list="dropList" :isOpen="showDrop" @toggle="toggleDrop">
+      <ui-dropdown
+        @item-click="test"
+        :list="dropList"
+        :isOpen="showDrop"
+        @close="showDrop = false"
+        @toggle="toggleDrop"
+      >
         <ui-avater classname="ml-1"
       /></ui-dropdown>
     </section>

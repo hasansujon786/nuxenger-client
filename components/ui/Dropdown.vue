@@ -3,8 +3,8 @@
     <button
       v-show="isOpen"
       tabindex="-1"
-      @click="$emit('toggle')"
-      class="fixed inset-0 w-full h-full cursor-default"
+      @click="$emit('close')"
+      class="fixed z-10 inset-0 w-full h-full cursor-default bg-gray-900 opacity-0"
     ></button>
     <a
       ref="link"
@@ -18,7 +18,7 @@
 
     <section
       v-show="isOpen"
-      class="dropdown-body absolute mt-1 bg-white border rounded shadow-md"
+      class="dropdown-body absolute z-10 mt-1 bg-white border rounded shadow-md"
       style="min-width: 200px;"
     >
       <a
@@ -48,12 +48,11 @@ export default {
   },
   methods: {
     handleItemClick(item) {
-      this.$emit('toggle')
       this.$emit('item-click', item)
-      this.$refs.link.focus()
+      this.handleExit()
     },
     handleExit() {
-      this.$emit('toggle')
+      this.$emit('close')
       this.$refs.link.focus()
     }
   }

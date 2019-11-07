@@ -2,7 +2,7 @@
   <div class="absolute">
     <button
       tabindex="-1"
-      @click="$emit('toggle')"
+      @click="toggleDMmodel"
       class="fixed inset-0 w-full h-full cursor-default bg-gray-900 opacity-50"
     ></button>
 
@@ -14,11 +14,9 @@
       </div>
       <section class="px-6 py-4">
         <div class="" style="width: 400px">
-          <ui-input placeholder="Name" height="h-12" />
+          <ui-input ref="nameInput" placeholder="Name" height="h-12" />
           <ui-input placeholder="To: " height="h-12" class="mt-2" />
-          <ui-button :primary="true" @click="handleExit" :disabled="false" class="w-full mt-2"
-            >Create</ui-button
-          >
+          <ui-button :primary="true" :disabled="false" class="w-full mt-2">Create</ui-button>
         </div>
       </section>
     </div>
@@ -26,21 +24,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Input from '~/components/ui/Input.vue'
 import Button from '~/components/ui/Button.vue'
 
 export default {
   methods: {
-    handleItemClick() {
-      // this.$emit('toggle')
-      // this.$emit('item-click', item)
-      // this.$refs.link.focus()
-    },
-    handleExit() {
-      // this.$emit('toggle')
-      // this.$refs.link.focus()
-      // alert('button clied')
+    ...mapActions({ toggleDMmodel: 'app/toggleDMmodel' })
+  },
+  mounted() {
+    this.$refs.nameInput.$el.focus()
+    const handleEsc = e => {
+      if (e.key === 'Esc' || e.key === 'Escape') {
+        this.toggleDMmodel()
+      }
     }
+
+    document.addEventListener('keydown', handleEsc)
+    this.$once('hook:beforeDestroy', () => document.removeEventListener('keydown', handleEsc))
   },
   components: {
     uiInput: Input,

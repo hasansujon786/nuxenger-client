@@ -5,7 +5,7 @@
     <main style="grid-area: main" class="flex">
       <Sidebar />
       <div class="flex-grow relative">
-        <ui-new-chat-model class="" style="top: 1rem; left: 1rem" />
+        <ui-new-dm-model v-if="isDMmodelOpen" class="" style="top: 1rem; left: 1rem" />
         <nuxt />
       </div>
     </main>
@@ -13,21 +13,23 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import Sidebar from '~/components/Sidebar.vue'
 import QuickLink from '~/components/QuickLink.vue'
 import Navbar from '~/components/Navbar.vue'
-import NewChatModel from '~/components/ui/NewChatModel.vue'
+import NewDmModel from '~/components/ui/NewDmModel.vue'
 
 export default {
   name: 'applayout',
-  computed: {},
+  computed: {
+    ...mapGetters({ isDMmodelOpen: 'app/getIsDMmodelOpen' })
+  },
   methods: {},
   components: {
     Sidebar,
     QuickLink,
     Navbar,
-    uiNewChatModel: NewChatModel
+    uiNewDmModel: NewDmModel
   }
 }
 </script>
