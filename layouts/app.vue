@@ -1,6 +1,6 @@
 <template>
   <section class="main-app-layout h-screen text-gray-800 font-sans">
-    <QuickLink />
+    <QuickLink :authUser="authUser" />
     <Navbar :authUser="authUser" />
     <main style="grid-area: main" class="flex">
       <Sidebar />

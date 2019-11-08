@@ -11,10 +11,43 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { CHAT_SUBSCRIPTION } from '~/gql'
 import Icon from '~/components/ui/Icon.vue'
+
 export default {
+  props: {
+    authUser: {
+      type: Object
+    }
+  },
   methods: {
-    ...mapActions({ toggleDMmodel: 'app/toggleDMmodel' })
+    ...mapActions({
+      toggleDMmodel: 'app/toggleDMmodel',
+      handleChatSubscription: 'chats/handleChatSubscription'
+    })
+  },
+  apollo: {
+    // Subscriptions
+    $subscribe: {
+      // When a tag is added
+      chatSubscription: {
+        query: CHAT_SUBSCRIPTION,
+        // Reactive variables
+        variables() {
+          // This works just like regular queries
+          // and will re-subscribe with the right variables
+          // each time the values change
+          return {
+            currentUserId: this.authUser.id
+          }
+        },
+        // Result hook
+        // Don't forget to destructure `data`
+        result({ data }) {
+          this.handleChatSubscription(data.chat)
+        }
+      }
+    }
   },
   components: {
     Icon

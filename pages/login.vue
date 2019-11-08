@@ -4,6 +4,7 @@
     <section class="flex flex-col items-center pt-40">
       <h1 class="text-5xl font-semibold">nuxenger</h1>
       <p class="-mt-1 mb-6 text-sm text-gray-600">Welcome back! Please login to your account.</p>
+      <nuxt-link to="/">home</nuxt-link>
 
       <form @submit.prevent="handleSignInSubmit" class="" style="width: 400px">
         <ui-input

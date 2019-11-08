@@ -17,6 +17,8 @@ const { data } = await this.$apollo.query({
 */
 
 /* 
+https://vue-apollo.netlify.com/guide/apollo/subscriptions.html#subscribe-to-more
+
 apollo: {
   // Subscriptions
   $subscribe: {

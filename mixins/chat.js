@@ -1,4 +1,4 @@
-import { START_GROUP_CHAT_MUTATION } from '../gql'
+import { START_GROUP_CHAT_MUTATION, CHAT_SUBSCRIPTION } from '../gql'
 
 export const chatMixins = {
   methods: {
@@ -10,7 +10,8 @@ export const chatMixins = {
         })
 
         if (data) {
-          console.log(data)
+          // TODO: Show user confirm chat has created
+          // console.log(data)
         }
       } catch (err) {
         console.log(err)
