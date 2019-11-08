@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="link"
-    class="recent-item block mt-1 px-2 py-2 flex items-center rounded-lg hover:bg-gray-200 "
+    class="recent-item block mt-1 px-2 py-2 flex items-center rounded-lg hover:bg-gray-300 "
   >
     <section>
       <avater size="lg" />
@@ -49,6 +49,6 @@ export default {
 } */
 .recent-item.nuxt-link-active {
   /* border-left: 4px solid #38a169; */
-  @apply bg-gray-200;
+  @apply bg-gray-300;
 }
 </style>
