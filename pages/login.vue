@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { SIGN_IN_MUTATION } from '~/gql'
+import { authMixins } from '~/mixins'
 import Input from '~/components/ui/Input.vue'
 import ButtonVue from '~/components/ui/Button.vue'
 
@@ -52,37 +52,15 @@ export default {
     handleSignInSubmit() {
       const { email, password } = this.signinForm
       if (!email && !password) return
-      this.signInWithEmailAndPassword(this.signinForm)
-    },
-    async signInWithEmailAndPassword({ email, password }) {
-      try {
-        // Call to the graphql mutation
-        const { data } = await this.$apollo.mutate({
-          mutation: SIGN_IN_MUTATION,
-          variables: {
-            email,
-            password
-          }
-        })
-
-        if (data.signIn) {
-          // set authUser & chatList & redirect
-          const { chats, ...user } = data.signIn
-          this.$store.dispatch('user/setAuthUser', user)
-          this.$store.dispatch('chats/setChatList', chats)
-          this.$router.push('/')
-        }
-      } catch (err) {
-        this.$router.push('/login')
-        console.error(err)
-        // dispatch('displayError', { err, msg: 'Error in signIn' })
-      }
+      // TODO: Validate from submition
+      this.mixSignInWithEmailAndPassword(this.signinForm)
     }
   },
   components: {
     uiInput: Input,
     uiButton: ButtonVue
-  }
+  },
+  mixins: [authMixins]
 }
 </script>
 

@@ -10,7 +10,7 @@
 
       <ui-icon icon="bell" />
       <ui-dropdown
-        @item-click="test"
+        @item-click="handleUserDropdownClick"
         :list="dropList"
         :isOpen="showDrop"
         @close="showDrop = false"
@@ -34,6 +34,7 @@
 import Avater from '~/components/ui/Avater.vue'
 import Icon from '~/components/ui/Icon.vue'
 import DropdownVue from '~/components/ui/Dropdown.vue'
+import { authMixins } from '~/mixins'
 
 export default {
   data() {
@@ -51,14 +52,30 @@ export default {
     toggleDrop() {
       this.showDrop = !this.showDrop
     },
-    test(item) {
-      console.log(item)
+    handleUserDropdownClick(item) {
+      switch (item.toLowerCase()) {
+        case 'all contacts':
+          console.log('all contacts')
+          break
+
+        case 'settings':
+          console.log('settings')
+          break
+
+        case 'signout':
+          this.mixSignOutAuthUser()
+          break
+
+        default:
+          break
+      }
     }
   },
   components: {
     uiIcon: Icon,
     uiAvater: Avater,
     uiDropdown: DropdownVue
-  }
+  },
+  mixins: [authMixins]
 }
 </script>
