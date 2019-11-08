@@ -41,3 +41,13 @@ export const ME_QUERY = gql`
     }
   }
 `
+
+export const USERS_QUERY = gql`
+  query users {
+    users {
+      id
+      name
+      username
+    }
+  }
+`

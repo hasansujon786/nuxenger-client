@@ -76,9 +76,11 @@ export const authMixins = {
           this.$store.dispatch('chats/setChatList', chats)
           // this.$router.push('/')
         } else {
+          console.log('redirect from mix else')
           this.$router.push('/login')
         }
       } catch (err) {
+        console.log('redirect from mix err')
         this.$router.push('/login')
         // dispatch('displayerror', { err, msg: 'error in getauthuseronapploads' })
       }

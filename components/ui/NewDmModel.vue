@@ -13,8 +13,8 @@
         Create new message
       </div>
       <section class="px-6 py-4">
-        <div class="relative" style="width: 400px">
-          <ui-input ref="nameInput" placeholder="Name" height="h-12" />
+        <form @submit.prevent="handleNewDmSubmitForm" class="relative" style="width: 400px">
+          <ui-input v-model="newDM.title" ref="nameInput" placeholder="Chat Name" height="h-12" />
           <!-- @blur="showUserPanel = false" -->
           <ui-input
             v-model="userSearchText"
@@ -32,7 +32,8 @@
                 <a
                   class="block px-3 py-2 text-sm text-gray-700 font-semibold outline-none focus:bg-gray-300 hover:bg-gray-300"
                   href="#"
-                  v-for="user in users"
+                  @click.prevent="handleClickOnUserPanel(user)"
+                  v-for="user in filteredUsers"
                   :key="user.id"
                 >
                   {{ user.name }}
@@ -46,7 +47,7 @@
           </section>
 
           <ui-button :primary="true" :disabled="false" class="w-full mt-2">Create</ui-button>
-        </div>
+        </form>
       </section>
     </div>
   </div>
@@ -54,6 +55,8 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { USERS_QUERY } from '~/gql'
+import { usersMixins, chatMixins } from '~/mixins'
 import Input from '~/components/ui/Input.vue'
 import Button from '~/components/ui/Button.vue'
 
@@ -62,37 +65,64 @@ export default {
     return {
       showUserPanel: false,
       userSearchText: '',
-      users: [
-        { name: 'kuddus ali kan', id: 1 },
-        { name: 'Shahrukh Kahan', id: 2 },
-        { name: 'Katrina kaif', id: 3 },
-        { name: 'Motaleb udduin', id: 4 },
-        { name: 'Moriom Begurm', id: 5 },
-        { name: 'Sokina Banu', id: 6 }
-      ]
+      users: [],
+      newDM: {
+        title: '',
+        userIds: []
+      }
+    }
+  },
+  computed: {
+    filteredUsers() {
+      return this.users.filter(user => {
+        return user.name.toLowerCase().includes(this.userSearchText.toLowerCase())
+      })
     }
   },
   methods: {
     ...mapActions({ toggleDMmodel: 'app/toggleDMmodel' }),
+    handleClickOnEsc() {
+      const handleEsc = e => {
+        if (e.key === 'Esc' || e.key === 'Escape') {
+          this.toggleDMmodel()
+        }
+      }
+
+      document.addEventListener('keydown', handleEsc)
+      this.$once('hook:beforeDestroy', () => {
+        document.removeEventListener('keydown', handleEsc)
+      })
+    },
     indexUserList(direction) {
+      // work on To: user field
       console.log(direction)
+    },
+    handleClickOnUserPanel(selectedUser) {
+      this.showUserPanel = false
+      this.userSearchText = selectedUser.name
+      this.newDM.userIds.push(selectedUser.id)
+    },
+    async onFirstLoad() {
+      // focus on the name input fiesl
+      this.$refs.nameInput.$el.focus()
+      this.handleClickOnEsc()
+      // Get all users
+      this.users = await this.mixGetUsers()
+    },
+    handleNewDmSubmitForm() {
+      // TODO: validatae inputs
+      this.mixStartGroupChat(this.newDM)
+      this.toggleDMmodel()
     }
   },
   mounted() {
-    this.$refs.nameInput.$el.focus()
-    const handleEsc = e => {
-      if (e.key === 'Esc' || e.key === 'Escape') {
-        this.toggleDMmodel()
-      }
-    }
-
-    document.addEventListener('keydown', handleEsc)
-    this.$once('hook:beforeDestroy', () => document.removeEventListener('keydown', handleEsc))
+    this.onFirstLoad()
   },
   components: {
     uiInput: Input,
     uiButton: Button
-  }
+  },
+  mixins: [usersMixins, chatMixins]
 }
 </script>
 
