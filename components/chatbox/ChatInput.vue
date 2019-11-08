@@ -1,10 +1,11 @@
 <template>
-  <form class="px-4 py-6 border">
+  <form @submit.prevent="handleOnNewMsgSubmit" class="px-4 py-6 border">
     <div
       class="chat-input h-12 w-full rounded-lg border-2 border-gray-400 text-gray-900 flex items-stretch truncate tracking-wide text-base"
       style="background: #EDF2F7"
     >
       <input
+        v-model="newMsg"
         type="text"
         class="bg-transparent outline-none flex-grow px-3"
         placeholder="Type a message..."
@@ -19,7 +20,24 @@
 </template>
 
 <script>
-export default {}
+import { messageMixins } from '~/mixins'
+
+export default {
+  data() {
+    return {
+      newMsg: ''
+    }
+  },
+  methods: {
+    handleOnNewMsgSubmit() {
+      // TODO : Validate from submition
+      if (!this.newMsg) return
+      this.mixSendMessage({ chatId: this.$route.params.chatId, body: this.newMsg })
+      this.newMsg = ''
+    }
+  },
+  mixins: [messageMixins]
+}
 </script>
 
 <style lang="scss" scoped>

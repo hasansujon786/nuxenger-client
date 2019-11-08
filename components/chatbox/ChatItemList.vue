@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { CHAT_QUERY } from '~/gql'
+import { CHAT_QUERY, MESSAGE_SUBSCRIPTION } from '~/gql'
 import ChatItem from '~/components/chatbox/ChatItem.vue'
 
 export default {
@@ -27,6 +27,35 @@ export default {
         this.messages = data.chat.messages
       } catch (err) {
         console.log(err)
+      }
+    },
+    handleMessageSubscription(message) {
+      switch (message.mutation) {
+        case 'NEW_MESSAGE':
+          this.messages.push(message.data)
+          break
+
+        default:
+          console.info('from default', message.mutation)
+          break
+      }
+    }
+  },
+  apollo: {
+    // Subscriptions
+    $subscribe: {
+      // When a tag is added
+      message: {
+        query: MESSAGE_SUBSCRIPTION,
+        variables() {
+          return {
+            chatId: this.$route.params.chatId
+          }
+        },
+        result({ data }) {
+          // TODO: update last msg on new msg
+          this.handleMessageSubscription(data.message)
+        }
       }
     }
   },
