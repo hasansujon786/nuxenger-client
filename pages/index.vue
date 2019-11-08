@@ -1,12 +1,24 @@
 <template>
   <div class="h-full">
     index page
+    <div>
+      {{ hello }}
+    </div>
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
-  layout: 'app'
+  layout: 'app',
+  apollo: {
+    hello: gql`
+      query hello {
+        hello
+      }
+    `
+  }
 }
 </script>
 

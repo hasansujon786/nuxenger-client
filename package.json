@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc17",
     "nuxt": "^2.10.2"
   },
   "devDependencies": {

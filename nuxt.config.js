@@ -1,3 +1,5 @@
+import apolloConfig from './plugins/apollo-config'
+
 export default {
   mode: 'spa',
   /*
@@ -41,7 +43,10 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/apollo'],
+  // Give apollo module options
+  apollo: apolloConfig,
+
   /*
    ** Build configuration
    */
