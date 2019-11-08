@@ -30,7 +30,7 @@
             <div class="bg-white border rounded-lg shadow-md overflow-hidden">
               <section v-if="users && users.length" class="">
                 <a
-                  class="block px-3 py-2 text-sm outline-none focus:bg-gray-300 hover:bg-gray-300"
+                  class="block px-3 py-2 text-sm text-gray-700 font-semibold outline-none focus:bg-gray-300 hover:bg-gray-300"
                   href="#"
                   v-for="user in users"
                   :key="user.id"
