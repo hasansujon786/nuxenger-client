@@ -1,5 +1,6 @@
 <template functional>
   <div
+    v-bind="data.attrs"
     class="bg-gray-400 rounded-full truncate flex items-center justify-center"
     :class="[props.size, props.classname]"
   >

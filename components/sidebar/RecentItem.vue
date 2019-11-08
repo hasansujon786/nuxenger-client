@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="link"
+    :to="`/chats/${link}`"
     class="recent-item block mt-1 px-2 py-2 flex items-center rounded-lg hover:bg-gray-300 "
   >
     <section>
@@ -9,13 +9,11 @@
 
     <section class="flex-grow ml-1 text-sm bg-gray-50 truncate">
       <div class="flex justify-between items-baseline">
-        <p class="font-semibold">Bruce Wayn</p>
+        <p class="font-semibold">{{ name }}</p>
         <span class="text-gray-600" style="font-size: 13px">Tue</span>
       </div>
       <p class="text-gray-600 mt-1 truncate" style="font-size: 13px">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat temporibus aliquid odit
-        repellendus fuga earum quaerat quidem vero, laudantium modi similique iste laborum corporis
-        sit at aperiam amet in saepe.
+        {{ lastMsg.body ? lastMsg.body : '...' }}
       </p>
     </section>
   </nuxt-link>
@@ -25,18 +23,7 @@
 import Avater from '~/components/ui/Avater.vue'
 
 export default {
-  props: {
-    link: {
-      type: String,
-      required: true
-    },
-    lastMsg: {
-      type: String
-    },
-    userName: {
-      type: String
-    }
-  },
+  props: ['link', 'name', 'lastMsg'],
   components: {
     Avater
   }

@@ -16,7 +16,7 @@
         @close="showDrop = false"
         @toggle="toggleDrop"
       >
-        <ui-avater classname="ml-1"
+        <ui-avater :title="authUser.name" classname="ml-1"
       /></ui-dropdown>
     </section>
 
@@ -40,6 +40,11 @@ export default {
     return {
       showDrop: false,
       dropList: ['All Contacts', 'Settings', 'Signout']
+    }
+  },
+  props: {
+    authUser: {
+      type: Object
     }
   },
   methods: {

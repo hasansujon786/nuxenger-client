@@ -1,7 +1,7 @@
 <template>
   <section class="main-app-layout h-screen text-gray-800 font-sans">
     <QuickLink />
-    <Navbar />
+    <Navbar :authUser="authUser" />
     <main style="grid-area: main" class="flex">
       <Sidebar />
       <div class="flex-grow relative">
@@ -22,7 +22,7 @@ import NewDmModel from '~/components/ui/NewDmModel.vue'
 export default {
   name: 'applayout',
   computed: {
-    ...mapGetters({ isDMmodelOpen: 'app/getIsDMmodelOpen' })
+    ...mapGetters({ isDMmodelOpen: 'app/getIsDMmodelOpen', authUser: 'user/getauthUser' })
   },
   methods: {},
   components: {
