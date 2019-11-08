@@ -1,10 +1,10 @@
 <template>
   <div class="chat-item flex items-center" :class="{ right: isUser }">
     <div class="avater-wrapper self-start">
-      <avater size="sm" />
+      <avater :title="msg.sender.name" size="sm" />
     </div>
     <div class="mx-1">
-      <chat-bubble msg="hello" />
+      <chat-bubble :msgBody="msg.body" />
     </div>
   </div>
 </template>
@@ -15,9 +15,11 @@ import Avater from '~/components/ui/Avater.vue'
 
 export default {
   props: {
-    isUser: {
-      type: Boolean,
-      default: false
+    msg: {}
+  },
+  computed: {
+    isUser() {
+      return this.$store.getters['user/getauthUser'].id === this.msg.sender.id
     }
   },
   components: {

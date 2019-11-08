@@ -14,6 +14,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { authMixins } from '~/mixins'
 import Sidebar from '~/components/Sidebar.vue'
 import QuickLink from '~/components/QuickLink.vue'
 import Navbar from '~/components/Navbar.vue'
@@ -24,13 +25,17 @@ export default {
   computed: {
     ...mapGetters({ isDMmodelOpen: 'app/getIsDMmodelOpen', authUser: 'user/getauthUser' })
   },
-  methods: {},
+  created() {
+    console.log('app created')
+    this.mixGetAuthUserOnFirstLoad()
+  },
   components: {
     Sidebar,
     QuickLink,
     Navbar,
     uiNewDmModel: NewDmModel
-  }
+  },
+  mixins: [authMixins]
 }
 </script>
 

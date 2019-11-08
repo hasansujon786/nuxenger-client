@@ -6,16 +6,6 @@ export const SIGN_IN_MUTATION = gql`
       id
       name
       username
-      chats {
-        id
-        title
-        lastMessage {
-          body
-          sender {
-            name
-          }
-        }
-      }
     }
   }
 `

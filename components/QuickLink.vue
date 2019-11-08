@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-100 border-r" style="grid-area: quicklink">
     <section class="flex flex-col items-center">
-      <a class="mt-3" href="#"><icon icon="compass" size="lg"/></a>
+      <nuxt-link class="mt-3" to="/"><icon icon="compass" size="lg"/></nuxt-link>
       <a class="mt-2" href="#"><icon icon="message-sq" size="lg"/></a>
       <a class="mt-2" href="#"><icon icon="zap" size="lg"/></a>
       <a class="mt-2" @click.prevent="toggleDMmodel" href="#"><icon icon="plus" size="lg"/></a>
