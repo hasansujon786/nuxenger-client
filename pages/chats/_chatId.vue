@@ -61,7 +61,7 @@ export default {
           break
 
         default:
-          console.info('from default', message.mutation)
+          console.info('from default handleMessageSubscription', message.mutation, message.data)
           break
       }
     }

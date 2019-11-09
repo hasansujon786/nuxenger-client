@@ -33,7 +33,7 @@ export const actions = {
         break
 
       default:
-        console.info('from default', mutation)
+        console.info('from default', mutation, data)
         break
     }
   }

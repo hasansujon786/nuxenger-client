@@ -8,7 +8,6 @@ export const mutations = {
     state.theme = theme
   },
   TOGGLE_CHAT_MODEL(state) {
-    console.info('from toggle')
     state.isChatModelOpen = !state.isChatModelOpen
   }
 }
