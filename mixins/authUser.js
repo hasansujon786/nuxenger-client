@@ -11,6 +11,8 @@ export const authMixins = {
 
         if (data.signOut) {
           // TODO: Clear all vuex user data
+          this.$store.dispatch('user/resetUserState')
+          this.$store.dispatch('chats/resetChatsState')
           this.$router.push('/login')
         }
       } catch (err) {

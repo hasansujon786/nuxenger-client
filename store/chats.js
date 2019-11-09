@@ -1,8 +1,16 @@
-export const state = () => ({
-  chatList: []
-})
+const getDefaultState = () => {
+  return {
+    chatList: []
+  }
+}
+export const state = () => getDefaultState()
+
 // mutations ==============================
 export const mutations = {
+  RESET_STATE(state) {
+    // https://tahazsh.com/vuebyte-reset-module-state
+    Object.assign(state, getDefaultState())
+  },
   SET_CHAT_LIST(state, chats) {
     state.chatList = chats
   },
@@ -12,6 +20,9 @@ export const mutations = {
 }
 // actions ==============================
 export const actions = {
+  resetChatsState({ commit }) {
+    commit('RESET_STATE')
+  },
   setChatList({ commit }, chats) {
     commit('SET_CHAT_LIST', chats)
   },
