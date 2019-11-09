@@ -1,11 +1,10 @@
 <template>
   <section class="main-app-layout h-screen text-gray-800 font-sans">
     <QuickLink :authUser="authUser" />
-    <Navbar :authUser="authUser" />
     <main style="grid-area: main" class="flex">
       <Sidebar />
       <div class="flex-grow relative">
-        <ui-new-dm-model v-if="isDMmodelOpen" class="" style="top: 1rem; left: 1rem" />
+        <ui-new-dm-model v-if="isDMmodelOpen" class="" style="top: 5rem; left: 1rem" />
         <nuxt />
       </div>
     </main>
@@ -17,7 +16,6 @@ import { mapGetters } from 'vuex'
 import { authMixins } from '~/mixins'
 import Sidebar from '~/components/Sidebar.vue'
 import QuickLink from '~/components/QuickLink.vue'
-import Navbar from '~/components/Navbar.vue'
 import NewDmModel from '~/components/ui/NewDmModel.vue'
 
 export default {
@@ -32,7 +30,6 @@ export default {
   components: {
     Sidebar,
     QuickLink,
-    Navbar,
     uiNewDmModel: NewDmModel
   },
   mixins: [authMixins]
@@ -45,7 +42,7 @@ export default {
   grid-template-rows: 64px auto;
   grid-template-columns: 64px auto;
   grid-template-areas:
-    'quicklink nav'
+    'quicklink main'
     'quicklink main';
 }
 </style>

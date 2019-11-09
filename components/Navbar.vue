@@ -1,6 +1,6 @@
 <template>
-  <nav class="bg-gray-100 border-b flex " style="grid-area: nav">
-    <section class="border-r flex items-center px-3" style="width: 300px">
+  <nav class="bg-gray-100 h-16 border-b flex ">
+    <section class="flex items-center px-3 w-full">
       <h1
         style="font-size: 38px"
         class="leading-none text-gray-800 font-bold leading-none -mt-2 mr-auto"
@@ -19,14 +19,6 @@
         <ui-avater :title="authUser.name" classname="ml-1"
       /></ui-dropdown>
     </section>
-
-    <section class="flex-grow px-3 flex justify-between items-center">
-      <span>
-        <h2 class="font-semibold">Kuddus khan</h2>
-        <p class="text-xs text-gray-600 tracking-wider">Active</p>
-      </span>
-      <ui-icon />
-    </section>
   </nav>
 </template>
 
@@ -43,9 +35,9 @@ export default {
       dropList: ['All Contacts', 'Settings', 'Signout']
     }
   },
-  props: {
-    authUser: {
-      type: Object
+  computed: {
+    authUser() {
+      return this.$store.getters['user/getauthUser']
     }
   },
   methods: {

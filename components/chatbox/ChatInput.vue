@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleOnNewMsgSubmit" class="px-4 py-6 border">
+  <form @submit.prevent="handleOnNewMsgSubmit" class="px-4 border flex items-center">
     <div
       class="chat-input h-12 w-full rounded-lg border-2 border-gray-400 text-gray-900 flex items-stretch truncate tracking-wide text-base"
       style="background: #EDF2F7"
