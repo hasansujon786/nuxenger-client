@@ -31,7 +31,9 @@ export const authMixins = {
 
         if (data.signIn) {
           // console.log(data.signIn)
-          this.$router.push('/')
+          //   this.$router.push('/')
+          window.location = 'http://localhost:3000'
+          // TODO: Move base_url to process.env
         }
       } catch (err) {
         this.$router.push('/login')

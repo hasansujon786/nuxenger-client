@@ -23,7 +23,7 @@
     >
       <a
         href="#"
-        @click="handleItemClick(item)"
+        @click.prevent="handleItemClick(item)"
         @keydown.esc="handleExit"
         class="py-1 px-3 block text-sm outline-none text-gray-700 font-semibold focus:bg-gray-300 hover:bg-gray-300"
         v-for="(item, index) in list"
