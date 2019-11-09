@@ -2,7 +2,7 @@
   <div class="absolute">
     <button
       tabindex="-1"
-      @click="toggleDMmodel"
+      @click="toggleChatModel"
       class="fixed inset-0 w-full h-full cursor-default bg-gray-900 opacity-50"
     ></button>
 
@@ -80,11 +80,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions({ toggleDMmodel: 'app/toggleDMmodel' }),
+    ...mapActions({ toggleChatModel: 'app/toggleChatModel' }),
     handleClickOnEsc() {
       const handleEsc = e => {
         if (e.key === 'Esc' || e.key === 'Escape') {
-          this.toggleDMmodel()
+          this.toggleChatModel()
         }
       }
 
@@ -112,7 +112,7 @@ export default {
     handleNewDmSubmitForm() {
       // TODO: validatae inputs
       this.mixStartGroupChat(this.newDM)
-      this.toggleDMmodel()
+      this.toggleChatModel()
     }
   },
   mounted() {

@@ -4,7 +4,7 @@
     <main style="grid-area: main" class="flex">
       <Sidebar />
       <div class="flex-grow relative">
-        <ui-new-dm-model v-if="isDMmodelOpen" class="" style="top: 5rem; left: 1rem" />
+        <ui-new-chat-model v-if="isChatModelOpen" class="" style="top: 5rem; left: 1rem" />
         <nuxt />
       </div>
     </main>
@@ -16,12 +16,12 @@ import { mapGetters } from 'vuex'
 import { authMixins } from '~/mixins'
 import Sidebar from '~/components/Sidebar.vue'
 import QuickLink from '~/components/QuickLink.vue'
-import NewDmModel from '~/components/ui/NewDmModel.vue'
+import NewChatModel from '~/components/ui/NewChatModel.vue'
 
 export default {
   name: 'applayout',
   computed: {
-    ...mapGetters({ isDMmodelOpen: 'app/getIsDMmodelOpen', authUser: 'user/getauthUser' })
+    ...mapGetters({ isChatModelOpen: 'app/isChatModelOpen', authUser: 'user/getauthUser' })
   },
   created() {
     console.log('app created')
@@ -30,7 +30,7 @@ export default {
   components: {
     Sidebar,
     QuickLink,
-    uiNewDmModel: NewDmModel
+    uiNewChatModel: NewChatModel
   },
   mixins: [authMixins]
 }

@@ -1,14 +1,15 @@
 export const state = () => ({
   theme: 'dark',
-  isDMmodelOpen: false
+  isChatModelOpen: false
 })
 // mutations ==============================
 export const mutations = {
   _setTheme(state, theme) {
     state.theme = theme
   },
-  TOGGLE_DM_MODEL(state) {
-    state.isDMmodelOpen = !state.isDMmodelOpen
+  TOGGLE_CHAT_MODEL(state) {
+    console.info('from toggle')
+    state.isChatModelOpen = !state.isChatModelOpen
   }
 }
 // actions ==============================
@@ -16,12 +17,12 @@ export const actions = {
   setTheme({ commit }, theme) {
     commit('_setTheme', theme)
   },
-  toggleDMmodel({ commit }) {
-    commit('TOGGLE_DM_MODEL')
+  toggleChatModel({ commit }) {
+    commit('TOGGLE_CHAT_MODEL')
   }
 }
 // getters ==============================
 export const getters = {
-  getTheme: state => state.theme,
-  getIsDMmodelOpen: state => state.isDMmodelOpen
+  theme: state => state.theme,
+  isChatModelOpen: state => state.isChatModelOpen
 }
