@@ -24,7 +24,6 @@ export default {
     ...mapGetters({ isChatModelOpen: 'app/isChatModelOpen', authUser: 'user/getauthUser' })
   },
   created() {
-    console.log('app created')
     this.mixGetAuthUserOnFirstLoad()
   },
   components: {

@@ -3,19 +3,17 @@ import { ME_QUERY, SIGN_OUT_MUTATION, SIGN_IN_MUTATION, SIGN_UP_MUTATION } from 
 export const authMixins = {
   methods: {
     async mixSignOutAuthUser() {
-      console.log('testing signOutAuthUser')
       try {
         const { data } = await this.$apollo.mutate({
           mutation: SIGN_OUT_MUTATION
         })
 
         if (data.signOut) {
-          // TODO: Clear all vuex user data
+          // TODO: Remove user from apolo cache & Clear all vuex user data
+          this.$store.dispatch('chats/resetChatsState')
+          this.$store.dispatch('user/resetUserState')
+          await this.$apolloHelpers.onLogout()
           this.$router.push('/login')
-          setTimeout(() => {
-            this.$store.dispatch('chats/resetChatsState')
-            this.$store.dispatch('user/resetUserState')
-          }, 300)
         }
       } catch (err) {
         console.error(err)
@@ -38,6 +36,7 @@ export const authMixins = {
           //   this.$router.push('/')
           window.location = 'http://localhost:3000'
           // TODO: Move base_url to process.env
+          await this.$apolloHelpers.onLogin('secretValue')
         }
       } catch (err) {
         this.$router.push('/login')
@@ -67,7 +66,7 @@ export const authMixins = {
       }
     },
     async mixGetAuthUserOnFirstLoad() {
-      console.info('app first load from mixin')
+      // console.info('app first load from mixin')
       // Runs on App first loads
       try {
         const { data } = await this.$apollo.query({
@@ -82,7 +81,7 @@ export const authMixins = {
           this.$store.dispatch('chats/setChatList', chats)
           // this.$router.push('/')
         } else {
-          console.log('redirect from mix else')
+          console.log('%cRedirect from mixGetAuthUserOnFirstLoad else', 'color: orange;')
           this.$router.push('/login')
         }
       } catch (err) {
