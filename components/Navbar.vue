@@ -25,7 +25,7 @@
 <script>
 import Avater from '~/components/ui/Avater.vue'
 import Icon from '~/components/ui/Icon.vue'
-import DropdownVue from '~/components/ui/Dropdown.vue'
+import DropdownVue from '~/components/ui/AccountDropdown.vue'
 import { authMixins } from '~/mixins'
 
 export default {

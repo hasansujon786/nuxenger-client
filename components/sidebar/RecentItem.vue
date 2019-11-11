@@ -43,7 +43,6 @@
 <script>
 import Avater from '~/components/ui/Avater.vue'
 import Icon from '~/components/ui/Icon.vue'
-import DropdownVue from '../ui/Dropdown.vue'
 import { formatTextMixin, chatMixins } from '~/mixins'
 
 export default {
@@ -62,7 +61,6 @@ export default {
   },
   components: {
     Avater,
-    uiDropdown: DropdownVue,
     uiIcon: Icon
   },
   mixins: [formatTextMixin, chatMixins]

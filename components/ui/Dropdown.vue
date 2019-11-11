@@ -1,61 +1,55 @@
 <template>
   <div class="relative">
     <button
-      v-show="isOpen"
-      tabindex="-1"
-      @click="$emit('close')"
-      class="fixed z-10 inset-0 w-full h-full cursor-default bg-gray-900 opacity-0"
-    ></button>
-    <a
-      ref="link"
-      class="relative"
-      href="#"
+      class="text-gray-600"
+      ref="dropBtn"
       @keydown.esc.exact="handleExit"
       @keydown.shift.tab="handleExit"
-      @click.prevent="$emit('toggle')"
+      @click="handleToggle"
     >
-      <slot></slot>
-    </a>
-
-    <section
-      v-show="isOpen"
-      class="dropdown-body absolute z-10 mt-1 bg-white border rounded shadow-md"
-      style="min-width: 200px;"
-    >
-      <a
-        href="#"
-        @click.prevent="handleItemClick(item)"
-        @keydown.esc="handleExit"
-        class="py-1 px-3 block text-sm outline-none text-gray-700 font-semibold focus:bg-gray-200 hover:bg-gray-200"
-        v-for="(item, index) in list"
-        :key="index"
-        >{{ item }}</a
-      >
-    </section>
+      <ui-icon icon="more-h" />
+    </button>
+    <div :class="slotpos" class="absolute right-0 z-10 mt-1 bg-white border rounded shadow-md">
+      <slot v-if="isOpen" v-bind="{ handleExit, handleToggle }"></slot>
+    </div>
   </div>
 </template>
 
 <script>
+import IconVue from './Icon.vue'
 export default {
+  data() {
+    return {
+      isOpen: false
+    }
+  },
   props: {
-    isOpen: {
-      type: Boolean,
-      default: false
-    },
-    list: {
-      type: Array,
-      required: true
+    slotpos: {
+      type: String,
+      default: 'right-0'
     }
   },
   methods: {
-    handleItemClick(item) {
-      this.$emit('item-click', item)
-      this.handleExit()
+    handleToggle() {
+      this.isOpen = !this.isOpen
+      this.focusBtn()
     },
     handleExit() {
-      this.$emit('close')
-      this.$refs.link.focus()
+      this.isOpen = false
+      this.focusBtn()
+    },
+    focusBtn() {
+      this.$refs.dropBtn.focus()
     }
+  },
+  created() {
+    console.log(this.$scopedSlots)
+    console.log(this.$slots)
+  },
+  components: {
+    uiIcon: IconVue
   }
 }
 </script>
+
+<style></style>
