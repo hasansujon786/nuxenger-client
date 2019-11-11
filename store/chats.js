@@ -16,6 +16,10 @@ export const mutations = {
   },
   PUSH_NEW_CHAT(state, chat) {
     state.chatList.unshift(chat)
+  },
+  PUlL_OUT_DELETE_CHAT(state, chat) {
+    const index = state.chatList.findIndex(item => item.id === chat.id)
+    state.chatList.splice(index, 1)
   }
 }
 // actions ==============================
@@ -26,10 +30,13 @@ export const actions = {
   setChatList({ commit }, chats) {
     commit('SET_CHAT_LIST', chats)
   },
-  handleChatSubscription({ commit }, { mutation, data }) {
+  handleChatSubscription({ commit, dispatch }, { mutation, data }) {
     switch (mutation) {
       case 'NEW_CHAT':
         commit('PUSH_NEW_CHAT', data)
+        break
+      case 'DELETE_CHAT':
+        commit('PUlL_OUT_DELETE_CHAT', data)
         break
 
       default:

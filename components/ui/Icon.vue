@@ -1,6 +1,6 @@
 <template functional>
   <div
-    class="icon bg-gray-000 rounded-full truncate flex items-center justify-center hover:bg-gray-300"
+    class="icon bg-gray-000 rounded-full flex items-center justify-center hover:bg-gray-300"
     :class="[props.size, props.classname]"
   >
     <!-- user -->
@@ -54,6 +54,24 @@
       <circle cx="12" cy="12" r="1"></circle>
       <circle cx="12" cy="5" r="1"></circle>
       <circle cx="12" cy="19" r="1"></circle>
+    </svg>
+    <!-- more-h -->
+    <svg
+      v-else-if="props.icon === 'more-h'"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-more-horizontal"
+    >
+      <circle cx="12" cy="12" r="1"></circle>
+      <circle cx="19" cy="12" r="1"></circle>
+      <circle cx="5" cy="12" r="1"></circle>
     </svg>
     <!-- plus -->
     <svg

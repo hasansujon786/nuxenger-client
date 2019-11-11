@@ -10,7 +10,8 @@
       ref="link"
       class="relative"
       href="#"
-      @keydown.esc="handleExit"
+      @keydown.esc.exact="handleExit"
+      @keydown.shift.tab="handleExit"
       @click.prevent="$emit('toggle')"
     >
       <slot></slot>
@@ -25,7 +26,7 @@
         href="#"
         @click.prevent="handleItemClick(item)"
         @keydown.esc="handleExit"
-        class="py-1 px-3 block text-sm outline-none text-gray-700 font-semibold focus:bg-gray-300 hover:bg-gray-300"
+        class="py-1 px-3 block text-sm outline-none text-gray-700 font-semibold focus:bg-gray-200 hover:bg-gray-200"
         v-for="(item, index) in list"
         :key="index"
         >{{ item }}</a

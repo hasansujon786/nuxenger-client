@@ -8,6 +8,13 @@ export const START_GROUP_CHAT_MUTATION = gql`
     }
   }
 `
+export const DELETE_A_GROUP_CHAT_MUTATION = gql`
+  mutation($chatId: ID!) {
+    deleteAGroupChat(chatId: $chatId) {
+      id
+    }
+  }
+`
 
 export const CHAT_QUERY = gql`
   query($chatId: String) {

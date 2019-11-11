@@ -31,7 +31,7 @@ export const authMixins = {
           }
         })
 
-        if (data.signIn) {
+        if (data.signIn.id) {
           // console.log(data.signIn)
           //   this.$router.push('/')
           window.location = 'http://localhost:3000'
