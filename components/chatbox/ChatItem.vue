@@ -4,9 +4,7 @@
       <avater :title="msg.sender.name" size="sm" />
     </div>
     <dropdown #default="{ ...otherProps }">
-      <dropdown-item @onClick="test" :func="otherProps">Home</dropdown-item>
-      <dropdown-item @onClick="test" :func="otherProps">About</dropdown-item>
-      <dropdown-item @onClick="test" :func="otherProps">Delete</dropdown-item>
+      <dropdown-item @onClick="mixDeleteAMessage(msg.id)" :func="otherProps">Delete</dropdown-item>
     </dropdown>
     <div class="mx-1">
       <chat-bubble :msgBody="msg.body" />
@@ -15,6 +13,7 @@
 </template>
 
 <script>
+import { messageMixins } from '~/mixins'
 import ChatBubble from '~/components/chatbox/ChatBubble.vue'
 import Avater from '~/components/ui/Avater.vue'
 import Dropdown from '~/components/ui/Dropdown.vue'
@@ -39,7 +38,8 @@ export default {
     ChatBubble,
     Dropdown: Dropdown,
     DropdownItem: DropdownItem
-  }
+  },
+  mixins: [messageMixins]
 }
 </script>
 

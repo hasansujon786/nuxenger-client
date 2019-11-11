@@ -54,10 +54,15 @@ export default {
         console.log(err)
       }
     },
-    handleMessageSubscription(message) {
-      switch (message.mutation) {
+    handleMessageSubscription({ mutation, data }) {
+      switch (mutation) {
         case 'NEW_MESSAGE':
-          this.messages.push(message.data)
+          this.messages.push(data)
+          break
+
+        case 'DELETE_MESSAGE':
+          const index = this.messages.findIndex(item => item.id === data.id)
+          this.messages.splice(index, 1)
           break
 
         default:
