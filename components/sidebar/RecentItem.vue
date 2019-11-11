@@ -12,24 +12,13 @@
         <p class="font-semibold">{{ name }}</p>
 
         <span class="flex items-center relative">
-          <a @click.prevent="isOpen = !isOpen" href="#" class="more-icon text-gray-600 opacity-0"
-            ><ui-icon icon="more-h"></ui-icon
-          ></a>
+          <dropdown #default="{ ...otherProps }">
+            <dropdown-item @onClick="handleDeleteChat(link)" :func="otherProps"
+              >Delete</dropdown-item
+            >
+          </dropdown>
 
           <span class="text-gray-600" style="font-size: 13px">Tue</span>
-
-          <div
-            v-if="isOpen"
-            class="absolute right-0 z-10 mt-1 bg-white border rounded shadow-md"
-            style="top: 1.8rem;"
-          >
-            <a
-              @click.prevent="handleDeleteChat(link)"
-              class="py-1 px-3 block text-sm outline-none text-gray-700 font-semibold focus:bg-gray-200 hover:bg-gray-200"
-              href="#"
-              >Delete</a
-            >
-          </div>
         </span>
       </div>
 
@@ -43,6 +32,8 @@
 <script>
 import Avater from '~/components/ui/Avater.vue'
 import Icon from '~/components/ui/Icon.vue'
+import Dropdown from '~/components/ui/Dropdown.vue'
+import DropdownItem from '~/components/ui/DropdownItem.vue'
 import { formatTextMixin, chatMixins } from '~/mixins'
 
 export default {
@@ -54,6 +45,9 @@ export default {
   },
   props: ['link', 'name', 'lastMsg'],
   methods: {
+    test(op) {
+      console.log(op)
+    },
     handleDeleteChat(chatId) {
       this.isOpen = false
       this.mixDeleteAGroupChat(chatId)
@@ -61,7 +55,9 @@ export default {
   },
   components: {
     Avater,
-    uiIcon: Icon
+    uiIcon: Icon,
+    Dropdown: Dropdown,
+    DropdownItem: DropdownItem
   },
   mixins: [formatTextMixin, chatMixins]
 }

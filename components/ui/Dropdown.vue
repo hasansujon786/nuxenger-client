@@ -1,16 +1,21 @@
 <template>
-  <div class="relative">
-    <button
-      class="text-gray-600"
+  <div class="dropdown relative">
+    <a
+      href="#"
+      class="dropdown__icon-link text-gray-600"
       ref="dropBtn"
+      @click.prevent="handleToggle"
       @keydown.esc.exact="handleExit"
       @keydown.shift.tab="handleExit"
-      @click="handleToggle"
     >
-      <ui-icon icon="more-h" />
-    </button>
-    <div :class="slotpos" class="absolute right-0 z-10 mt-1 bg-white border rounded shadow-md">
-      <slot v-if="isOpen" v-bind="{ handleExit, handleToggle }"></slot>
+      <ui-icon :icon="icon" />
+    </a>
+    <div
+      v-if="isOpen"
+      :class="slotpos"
+      class="dropdown__palate absolute z-50 right-0 z-10 mt-1 bg-white border rounded shadow-md"
+    >
+      <slot v-bind="{ handleExit, handleToggle }"></slot>
     </div>
   </div>
 </template>
@@ -24,6 +29,10 @@ export default {
     }
   },
   props: {
+    icon: {
+      type: String,
+      default: 'more-h'
+    },
     slotpos: {
       type: String,
       default: 'right-0'
@@ -41,10 +50,6 @@ export default {
     focusBtn() {
       this.$refs.dropBtn.focus()
     }
-  },
-  created() {
-    console.log(this.$scopedSlots)
-    console.log(this.$slots)
   },
   components: {
     uiIcon: IconVue

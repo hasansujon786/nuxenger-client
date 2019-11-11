@@ -3,7 +3,7 @@
     <div class="avater-wrapper self-start">
       <avater :title="msg.sender.name" size="sm" />
     </div>
-    <dropdown icon="menu" #default="{ ...otherProps }">
+    <dropdown #default="{ ...otherProps }">
       <dropdown-item @onClick="test" :func="otherProps">Home</dropdown-item>
       <dropdown-item @onClick="test" :func="otherProps">About</dropdown-item>
       <dropdown-item @onClick="test" :func="otherProps">Delete</dropdown-item>
@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     test(option) {
-      this.toggle()
       console.log(option)
     }
   },
