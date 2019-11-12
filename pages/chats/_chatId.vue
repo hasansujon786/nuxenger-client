@@ -31,6 +31,7 @@ import Icon from '~/components/ui/Icon.vue'
 
 export default {
   layout: 'app',
+  middleware: 'auth',
   computed: {
     ...mapGetters({ head: 'messages/head', messages: 'messages/messages' })
   },

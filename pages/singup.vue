@@ -50,6 +50,7 @@ import { authMixins } from '~/mixins'
 import Input from '~/components/ui/Input.vue'
 import ButtonVue from '~/components/ui/Button.vue'
 export default {
+  middleware: 'guest',
   data() {
     return {
       signUp: {
