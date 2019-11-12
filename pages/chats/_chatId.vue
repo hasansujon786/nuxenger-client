@@ -5,7 +5,7 @@
       class="px-3 flex justify-between items-center bg-gray-100 border-b"
     >
       <span>
-        <h2 class="font-semibold">{{ chatHead.title ? chatHead.title : 'Loading...' }}</h2>
+        <h2 class="font-semibold">{{ head.title ? head.title : 'Loading...' }}</h2>
         <p class="text-xs text-gray-600 tracking-wider">Active</p>
       </span>
       <ui-icon />
@@ -22,54 +22,25 @@
 </template>
 
 <script>
-import { CHAT_QUERY, MESSAGE_SUBSCRIPTION } from '~/gql'
-import ChatItem from '~/components/chatbox/ChatItem.vue'
+import { messageMixins } from '~/mixins'
+import { MESSAGE_SUBSCRIPTION } from '~/gql'
+import { mapGetters, mapActions } from 'vuex'
 import ChatInput from '~/components/chatbox/ChatInput.vue'
+import ChatItem from '~/components/chatbox/ChatItem.vue'
 import Icon from '~/components/ui/Icon.vue'
 
 export default {
   layout: 'app',
-  data() {
-    return {
-      messages: [],
-      chatHead: {}
-    }
+  computed: {
+    ...mapGetters({ head: 'messages/head', messages: 'messages/messages' })
   },
   created() {
-    this.getSelectedChat(this.$route.params.chatId)
+    this.mixGetMessagesFromAChat(this.$route.params.chatId)
   },
   methods: {
-    async getSelectedChat(chatId) {
-      try {
-        const { data } = await this.$apollo.mutate({
-          mutation: CHAT_QUERY,
-          variables: { chatId }
-        })
-        if (data.chat) {
-          const { messages, ...othersProps } = data.chat
-          this.chatHead = othersProps
-          this.messages = messages
-        }
-      } catch (err) {
-        console.log(err)
-      }
-    },
-    handleMessageSubscription({ mutation, data }) {
-      switch (mutation) {
-        case 'NEW_MESSAGE':
-          this.messages.push(data)
-          break
-
-        case 'DELETE_MESSAGE':
-          const index = this.messages.findIndex(item => item.id === data.id)
-          this.messages.splice(index, 1)
-          break
-
-        default:
-          console.info('from default handleMessageSubscription', message.mutation, message.data)
-          break
-      }
-    }
+    ...mapActions({
+      handleMessageSubscription: 'messages/handleMessageSubscription'
+    })
   },
   apollo: {
     // Subscriptions
@@ -89,12 +60,12 @@ export default {
       }
     }
   },
-
   components: {
     ChatItem,
     ChatInput,
     uiIcon: Icon
-  }
+  },
+  mixins: [messageMixins]
 }
 </script>
 

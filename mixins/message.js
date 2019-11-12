@@ -1,6 +1,20 @@
-import { SEND_MESSAGE_MUTATION, DELETE_A_MESSAGE_MUTATION } from '../gql'
+import { CHAT_QUERY, SEND_MESSAGE_MUTATION, DELETE_A_MESSAGE_MUTATION } from '../gql'
+
 export const messageMixins = {
   methods: {
+    async mixGetMessagesFromAChat(chatId) {
+      try {
+        const { data } = await this.$apollo.mutate({
+          mutation: CHAT_QUERY,
+          variables: { chatId }
+        })
+        if (data.chat) {
+          this.$store.dispatch('messages/setMessagesFromAChat', data.chat)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
     async mixSendMessage({ chatId, body }) {
       try {
         const { data } = await this.$apollo.mutate({
