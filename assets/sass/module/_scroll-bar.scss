@@ -28,3 +28,11 @@
     background: rgba(136, 136, 136, 0.5);
   }
 }
+
+.hide-scroll-bars {
+  &::-webkit-scrollbar {
+    // width
+    width: 0px;
+    height: 0;
+  }
+}
