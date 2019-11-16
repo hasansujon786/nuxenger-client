@@ -1,122 +1,205 @@
 <template>
-  <div class="multi-select input-bg-color max-w-md relative border-2 rounded-lg overflow-hidden">
-    <section
-      class="absolute flex block w-full h-12 border-b "
-      :class="{ 'border-transparent': !isOpen }"
-    >
-      <ul class="hide-scroll-bars input-bg-color h-full flex items-center overflow-x-scroll">
-        <PillWithCross
-          v-for="(user, i) in selectedUsers"
-          :close="removeAnUser"
-          :userName="user"
-          :key="i"
-        />
-      </ul>
-      <label
-        for="ms-input"
-        :class="{ 'input-bg-color': selectedUsers.length }"
-        class="flex-1 flex items-center justify-end h-full cursor-text"
+  <div class="multi-select">
+    <section class="multi-select__input-wrapper border-2 rounded-lg overflow-hidden relative">
+      <div
+        v-show="selectedItems.length"
+        class="input--h-full absolute w-full flex border-b border-white"
+        :class="{ 'border-gray-300': selectedItems.length > 0 && isfocus }"
       >
-        <span
-          v-if="selectedUsers.length > 2"
-          class="text-xs font-bold text-gray-600 truncate pl-2 block"
-          >{{ selectedUsers.length }} selected</span
-        >
-        <span class="px-2 h-full flex items-center cursor-pointer">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            :class="{ rotate: isOpen }"
-            class="text-gray-500 feather feather-chevron-down"
-          >
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </span>
-      </label>
+        <ul class="overflow-x-scroll h-full hide-scroll-bars bg-white flex items-center">
+          <pill-with-cross
+            :handleCloss="removeSelectedItem"
+            :value="item"
+            v-for="(item, i) in selectedItems"
+            :key="i"
+          ></pill-with-cross>
+        </ul>
+        <label class="px-1 flex-grow bg-white cursor-text" for="ms-input"></label>
+      </div>
+
+      <div>
+        <div
+          :class="{ expanded: selectedItems.length > 0 && isfocus }"
+          class="multi-select__hidden-element w-full"
+        ></div>
+        <input
+          id="ms-input"
+          type="text"
+          autocomplete="off"
+          class="input--h-full w-full px-3 outline-none"
+          @focus="isfocus = true"
+          @blur="handleBlur"
+          @keyup.enter.exact.prevent="handleClickEnter"
+          @keydown.tab.shift.exact="handleShiftTab"
+          @keydown.up.exact.prevent="decreaseSelectedIndex"
+          @keydown.down.exact.prevent="increaseSelectedIndex"
+          @keydown.tab.exact="handleTab"
+          v-model="inputText"
+          placeholder="Search here..."
+        />
+      </div>
     </section>
 
-    <div :class="{ expended: isOpen }" class="multi-select__animated-object h-0"></div>
-
-    <input
-      placeholder="Search names, usernames"
-      @keypress.enter="addAnUser"
-      v-model="inputText"
-      @focus="isOpen = true"
-      @blur="isOpen = false"
-      type="text"
-      id="ms-input"
-      class="block w-full px-3 h-12 outline-none"
-    />
+    <section class="relative">
+      <plate v-show="isPlateOpen">
+        <p
+          v-if="filteredItem.length === 0"
+          class="font-bold text-sm text-gray-500 text-center my-3"
+        >
+          No results found
+        </p>
+        <plate-item
+          tabindex="-1"
+          :class="{ 'hovered-plate-item': selectedIndex === i }"
+          v-for="(item, i) in filteredItem"
+          :key="i"
+          >{{ item.name }}</plate-item
+        >
+      </plate>
+    </section>
   </div>
 </template>
 
 <script>
-import PillWithCross from './PillWithCross.vue'
+import Plate from '~/components/ui/Plate.vue'
+import PlateItem from '~/components/ui/PlateItem.vue'
+import Input from '~/components/ui/Input.vue'
+import PillWithCross from '~/components/ui/PillWithCross.vue'
 
 export default {
   name: 'MultiSelect',
-
   data() {
     return {
-      selectedUsers: [],
-      isOpen: false,
-      inputText: ''
+      selectedIndex: 0,
+      selectedItems: [],
+
+      inputText: '',
+      isfocus: false,
+      isPlateOpen: false
     }
   },
-
+  props: {
+    options: {
+      type: Array
+    },
+    optionKeys: {
+      type: Array,
+      default: () => ['name', 'username']
+    }
+  },
+  computed: {
+    filteredItem() {
+      return this.options.filter(
+        option => this.mapOptionKeys(option, 0) || this.mapOptionKeys(option, 1)
+      )
+    }
+  },
   methods: {
-    toggle() {
-      this.isOpen = !this.isOpen
+    mapOptionKeys(option, i) {
+      return option[this.optionKeys[i]].toLowerCase().match(this.inputText.toLowerCase())
     },
-    addAnUser() {
-      this.selectedUsers.push(this.inputText)
-      this.inputText = ''
-      setTimeout(() => {
-        const pillItems = document.querySelectorAll('.pillItems')
-        const lastPillItem = pillItems[pillItems.length - 1]
-        lastPillItem.scrollIntoView({ inline: 'end', behavior: 'smooth' })
-      }, 10)
+    plateIsNotOpen() {
+      return !this.isPlateOpen
     },
-    removeAnUser(removedUser) {
-      this.selectedUsers = this.selectedUsers.filter(item => item !== removedUser)
+    increaseSelectedIndex() {
+      if (!this.isPlateOpen) {
+        return (this.isPlateOpen = true)
+      }
+
+      this.selectedIndex = this.selectedIndex += 1
+      if (this.selectedIndex >= this.filteredItem.length) {
+        this.selectedIndex = 0
+      }
+    },
+    decreaseSelectedIndex() {
+      if (this.plateIsNotOpen()) return
+
+      this.selectedIndex = this.selectedIndex -= 1
+      if (this.selectedIndex < 0) {
+        this.selectedIndex = this.filteredItem.length - 1
+      }
+    },
+    handleClickEnter() {
+      if (this.plateIsNotOpen()) return
+
+      if (this.filteredItem[this.selectedIndex]) {
+        this.selectedItems.push(this.filteredItem[this.selectedIndex])
+        this.isPlateOpen = false
+        this.inputText = ''
+        setTimeout(() => {
+          this.scrollPillIntoView()
+        }, 100)
+      }
+    },
+    handleShiftTab($event) {
+      if (this.plateIsNotOpen()) return
+
+      $event.preventDefault()
+      this.decreaseSelectedIndex()
+    },
+    handleTab($event) {
+      if (this.plateIsNotOpen()) return
+
+      $event.preventDefault()
+      this.increaseSelectedIndex()
+    },
+    handleBlur() {
+      this.isfocus = false
+      this.closePanel()
+    },
+    closePanel() {
+      this.isPlateOpen = false
+      this.selectedIndex = 0
+    },
+    removeSelectedItem(removedItem) {
+      this.selectedItems = this.selectedItems.filter(item => item.id !== removedItem.id)
+      console.log(removedItem.name)
+    },
+    scrollPillIntoView() {
+      const pills = document.querySelectorAll('.multi-select .pillItems')
+      const lastPill = pills[pills.length - 1]
+      lastPill.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'end' })
     }
   },
-
+  watch: {
+    inputText(newVal) {
+      if (newVal.length > 0) {
+        this.selectedIndex = 0
+        this.isPlateOpen = true
+      } else {
+        this.closePanel()
+      }
+    }
+  },
   components: {
+    uiInput: Input,
     PillWithCross,
+    PlateItem,
+    Plate
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .multi-select {
-  &:focus-within {
+  --input-height: 48px;
+
+  &__input-wrapper:focus-within {
     @apply border-gray-500;
   }
 
-  &__animated-object {
-    transition: height 280ms ease;
-    &.expended {
-      height: 48px;
-    }
-  }
-
-  .feather-chevron-down {
-    transition: transform 150ms ease-in;
-    &.rotate {
-      transform: rotate(180deg);
-    }
+  &__hidden-element {
+    height: 0;
+    transition: all 280ms ease;
   }
 }
 
-.input-bg-color {
-  background-color: #fff;
+.multi-select__hidden-element.expanded,
+.input--h-full {
+  height: calc(var(--input-height) - 4px);
+}
+
+.hovered-plate-item {
+  @apply bg-gray-200;
 }
 </style>

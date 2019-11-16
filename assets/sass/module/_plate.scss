@@ -1,0 +1,11 @@
+.plate {
+  @apply overflow-hidden absolute z-50 z-10 w-full mt-1 bg-white border rounded shadow-md;
+
+  &__item {
+    @apply py-1 px-3 block text-sm outline-none text-gray-700 font-semibold;
+    &:hover,
+    &:focus {
+      @apply bg-gray-200;
+    }
+  }
+}
