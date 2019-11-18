@@ -1,13 +1,12 @@
 <template functional>
   <li class="pillItems flex items-center pl-3 pr-2 mx-1 py-1 rounded-lg bg-primary select-none">
-    <span class="block text-xs font-semibold truncate capitalize"> {{ props.value.name }} </span>
+    <span class="block text-xs font-semibold truncate capitalize"> {{ props.name }} </span>
     <!-- <slot class="block text-sm font-semibold truncate capitalize"></slot> -->
     <a
-      v-if="props.handleCloss"
       href="#"
-      @click.prevent="props.handleCloss(props.value)"
-      class="ml-1 text-gray-600 hover:text-red-600 focus:text-red-600 outline-none"
       tabindex="-1"
+      v-on="listeners"
+      class="ml-1 text-gray-600 hover:text-red-600 focus:text-red-600 outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -30,12 +29,7 @@
 export default {
   name: 'PillWithCross',
   props: {
-    value: {
-      type: Object
-    },
-    handleCloss: {
-      type: Function
-    }
+    name: { required: true }
   }
 }
 </script>

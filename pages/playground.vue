@@ -1,8 +1,8 @@
 <template>
   <section class="h-screen bg-gray-100">
     <div class="max-w-sm pt-40 mx-auto">
-      <a href="#">hadf</a>
-      <MultiSelect :options="users" />
+      <p>{{ msValue }}</p>
+      <MultiSelect placeholder="Type the name of a person." v-model="msValue" :options="users" />
       <!-- <d-m-select></d-m-select> -->
       <br />
       <br />
@@ -22,6 +22,8 @@ import InputWithPlate from '~/components/ui/InputWithPlate.vue'
 export default {
   data() {
     return {
+      msValue: null,
+      hmm: ['kuddus ali khan', 'motaleb hossain', 'mokles udding khan', 'sokina begurm'],
       users: [
         {
           id: '1',

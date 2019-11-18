@@ -1,8 +1,9 @@
 <template functional>
   <div
     class="icon bg-gray-000 rounded-full flex items-center justify-center hover:bg-gray-300"
-    :class="[props.size, props.classname]"
+    :class="[props.size, data.class, data.staticClass]"
   >
+    <!-- data.class, data.staticClass, -->
     <!-- user -->
     <svg
       v-if="props.icon === 'user'"
@@ -253,9 +254,6 @@ export default {
     size: {
       type: String,
       default: 'md'
-    },
-    classname: {
-      type: String
     }
   }
 }
