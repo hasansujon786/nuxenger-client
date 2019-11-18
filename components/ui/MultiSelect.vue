@@ -24,18 +24,19 @@
         ></div>
         <input
           id="ms-input"
+          ref="msInput"
           type="text"
           autocomplete="off"
           class="input--h-full w-full px-3 outline-none"
-          @focus="isfocus = true"
+          @focus="handleFocus"
           @blur="handleBlur"
-          @keyup.enter.exact.prevent="handleClickEnter"
-          @keydown.tab.shift.exact="handleShiftTab"
+          @keyup.enter.exact.prevent="handleClickEnter(filteredItem[selectedIndex])"
           @keydown.up.exact.prevent="decreaseSelectedIndex"
           @keydown.down.exact.prevent="increaseSelectedIndex"
           @keydown.tab.exact="handleTab"
+          @keydown.tab.shift.exact="handleTab"
           v-model="inputText"
-          placeholder="Search here..."
+          placeholder="Type the name of a person."
         />
       </div>
     </section>
@@ -51,6 +52,7 @@
         <plate-item
           tabindex="-1"
           :class="{ 'hovered-plate-item': selectedIndex === i }"
+          @click="handleClickEnter(item)"
           v-for="(item, i) in filteredItem"
           :key="i"
           >{{ item.name }}</plate-item
@@ -82,70 +84,60 @@ export default {
     options: {
       type: Array
     },
-    optionKeys: {
-      type: Array,
-      default: () => ['name', 'username']
+    trackBy: {
+      type: String,
+      default: 'name'
     }
   },
   computed: {
     filteredItem() {
-      return this.options.filter(
-        option => this.mapOptionKeys(option, 0) || this.mapOptionKeys(option, 1)
+      return this.options.filter(option =>
+        option[this.trackBy].toLowerCase().match(this.inputText.toLowerCase())
       )
     }
   },
   methods: {
-    mapOptionKeys(option, i) {
-      return option[this.optionKeys[i]].toLowerCase().match(this.inputText.toLowerCase())
-    },
     plateIsNotOpen() {
       return !this.isPlateOpen
     },
     increaseSelectedIndex() {
-      if (!this.isPlateOpen) {
+      if (this.plateIsNotOpen()) {
         return (this.isPlateOpen = true)
       }
 
       this.selectedIndex = this.selectedIndex += 1
-      if (this.selectedIndex >= this.filteredItem.length) {
-        this.selectedIndex = 0
-      }
+      this.selectedIndex >= this.filteredItem.length ? (this.selectedIndex = 0) : null
     },
     decreaseSelectedIndex() {
       if (this.plateIsNotOpen()) return
 
       this.selectedIndex = this.selectedIndex -= 1
-      if (this.selectedIndex < 0) {
-        this.selectedIndex = this.filteredItem.length - 1
-      }
+      this.selectedIndex < 0 ? (this.selectedIndex = this.filteredItem.length - 1) : null
     },
-    handleClickEnter() {
+    handleClickEnter(selectedItem) {
       if (this.plateIsNotOpen()) return
 
-      if (this.filteredItem[this.selectedIndex]) {
-        this.selectedItems.push(this.filteredItem[this.selectedIndex])
-        this.isPlateOpen = false
+      if (selectedItem) {
+        this.selectedItems.push(selectedItem)
+        // this.isPlateOpen = false
         this.inputText = ''
         setTimeout(() => {
           this.scrollPillIntoView()
         }, 100)
       }
     },
-    handleShiftTab($event) {
+    handleTab() {
       if (this.plateIsNotOpen()) return
 
-      $event.preventDefault()
-      this.decreaseSelectedIndex()
+      this.isfocus = false
+      this.closePanel()
     },
-    handleTab($event) {
-      if (this.plateIsNotOpen()) return
-
-      $event.preventDefault()
-      this.increaseSelectedIndex()
+    handleFocus() {
+      this.isfocus = true
+      // this.isPlateOpen = true
     },
     handleBlur() {
       this.isfocus = false
-      this.closePanel()
     },
     closePanel() {
       this.isPlateOpen = false

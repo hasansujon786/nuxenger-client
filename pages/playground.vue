@@ -3,6 +3,7 @@
     <div class="max-w-sm pt-40 mx-auto">
       <a href="#">hadf</a>
       <MultiSelect :options="users" />
+      <!-- <d-m-select></d-m-select> -->
       <br />
       <br />
       <br />
@@ -15,6 +16,7 @@
 
 <script>
 import MultiSelect from '~/components/ui/MultiSelect.vue'
+// import DMSelect from '~/components/ui/DMSelect.vue'
 import InputWithPlate from '~/components/ui/InputWithPlate.vue'
 
 export default {
@@ -50,6 +52,7 @@ export default {
     }
   },
   components: {
+    // DMSelect,
     MultiSelect,
     InputWithPlate
   }

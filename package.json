@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc17",
-    "nuxt": "^2.10.2"
+    "nuxt": "^2.10.2",
+    "vue-clickaway": "^2.2.2"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "1.1.2",
