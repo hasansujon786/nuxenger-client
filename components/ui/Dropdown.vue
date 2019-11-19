@@ -12,8 +12,9 @@
     </a>
     <div
       v-if="isOpen"
-      :class="slotpos"
-      class="dropdown__palate absolute z-50 right-0 z-10 mt-1 bg-white border rounded shadow-md"
+      :class="direction"
+      v-on-clickaway="handleExit"
+      class="dropdown__palate absolute z-10 mt-1 bg-white border rounded shadow-md"
     >
       <slot v-bind="{ handleExit, handleToggle }"></slot>
     </div>
@@ -22,7 +23,10 @@
 
 <script>
 import IconVue from './Icon.vue'
+import { mixin as clickaway } from 'vue-clickaway'
+
 export default {
+  mixins: [clickaway],
   data() {
     return {
       isOpen: false
@@ -33,23 +37,18 @@ export default {
       type: String,
       default: 'more-h'
     },
-    slotpos: {
+    direction: {
       type: String,
-      default: 'right-0'
+      default: 'left-0',
     }
   },
   methods: {
     handleToggle() {
       this.isOpen = !this.isOpen
-      this.focusBtn()
     },
     handleExit() {
       this.isOpen = false
-      this.focusBtn()
     },
-    focusBtn() {
-      this.$refs.dropBtn.focus()
-    }
   },
   components: {
     uiIcon: IconVue

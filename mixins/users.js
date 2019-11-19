@@ -8,9 +8,7 @@ export const usersMixins = {
           mutation: USERS_QUERY
         })
 
-        if (data.users) {
-          return data.users
-        }
+        return data.users
       } catch (err) {
         console.log(err)
       }

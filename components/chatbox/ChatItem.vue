@@ -3,11 +3,17 @@
     <div class="avater-wrapper self-start">
       <avater :title="msg.sender.name" size="sm" />
     </div>
-    <dropdown #default="{ ...otherProps }">
-      <dropdown-item @onClick="mixDeleteAMessage(msg.id)" :func="otherProps">Delete</dropdown-item>
-    </dropdown>
-    <div class="mx-1">
+
+    <div class="chat-bubble-wrapper mx-1">
       <chat-bubble :msgBody="msg.body" />
+    </div>
+
+    <div class="tools-wrapper">
+      <dropdown :direction="isUser ? 'right-0' : ''" #default="{ ...otherProps }">
+        <dropdown-item @onClick="mixDeleteAMessage(msg.id)" :func="otherProps"
+          >Delete</dropdown-item
+        >
+      </dropdown>
     </div>
   </div>
 </template>
@@ -49,6 +55,9 @@ export default {
     justify-content: flex-end;
     .avater-wrapper {
       order: 10;
+    }
+    .chat-bubble-wrapper {
+      order: 9;
     }
     .chat-bubble {
       @apply bg-green-600 text-white;
