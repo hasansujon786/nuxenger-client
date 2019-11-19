@@ -2,9 +2,9 @@
   <div class="multi-select">
     <section class="multi-select__input-wrapper border-2 rounded-lg overflow-hidden relative">
       <label
-        for="ms-input"
         style="min-width: 40px"
-        class="absolute right-0 text-gray-500 z-10 input--h-full flex justify-center items-center "
+        @click="$refs.msInput.focus()"
+        class="absolute right-0 text-gray-500 z-10 input--h-full flex justify-center items-center"
       >
         <span
           :class="{ rotated: selectedItems.length && inFocus }"
@@ -28,8 +28,8 @@
         </ul>
         <label
           style="min-width: 40px"
+          @click="$refs.msInput.focus()"
           class="px-1 flex-grow bg-white cursor-text"
-          for="ms-input"
         ></label>
       </div>
 
@@ -43,10 +43,11 @@
           id="ms-input"
           type="text"
           autocomplete="off"
+          ref="msInput"
           class="input--h-full w-full px-3 outline-none"
           @focus="handleFocus"
           @blur="handleBlur"
-          @keyup.enter.exact.prevent="handleClickEnter(filteredItem[selectedIndex])"
+          @keypress.enter.prevent.stop.self="handleClickEnter(filteredItem[selectedIndex])"
           @keydown.up.exact.prevent="decreaseSelectedIndex"
           @keydown.down.exact.prevent="increaseSelectedIndex"
           @keydown.tab.exact="handleTab"
@@ -102,7 +103,8 @@ export default {
   },
   props: {
     options: {
-      type: Array
+      type: Array,
+      required: true
     },
     trackBy: {
       type: String,
@@ -140,7 +142,7 @@ export default {
       if (selectedItem) {
         this.selectedItems.push(selectedItem)
         this.$emit('input', this.selectedItems)
-        // this.isPlateOpen = false
+        this.isPlateOpen = false
         this.inputText = ''
         setTimeout(() => {
           this.scrollPillIntoView()

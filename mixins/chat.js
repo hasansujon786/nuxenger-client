@@ -14,7 +14,7 @@ export const chatMixins = {
           // console.log(data)
         }
       } catch (err) {
-        console.log(err)
+        console.dir(err)
       }
     },
     async mixDeleteAGroupChat(chatId) {

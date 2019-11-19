@@ -2,7 +2,9 @@
   <section class="h-screen bg-gray-100">
     <div class="max-w-sm pt-40 mx-auto">
       <p>{{ msValue }}</p>
-      <MultiSelect placeholder="Type the name of a person." v-model="msValue" :options="users" />
+      <form  @submit.prevent="handleSubmit">
+        <MultiSelect placeholder="Type the name of a person." v-model="msValue" :options="users" />
+      </form>
       <!-- <d-m-select></d-m-select> -->
       <br />
       <br />
@@ -51,6 +53,11 @@ export default {
           name: 'Monsur Ali'
         }
       ]
+    }
+  },
+  methods: {
+    handleSubmit () {
+      console.log('from submitted')
     }
   },
   components: {
