@@ -1,6 +1,6 @@
 <template functional>
   <div
-    class="icon bg-gray-000 rounded-full flex items-center justify-center hover:bg-gray-300"
+    class="icon rounded-full flex items-center justify-center hover:bg-gray-300"
     :class="[props.size, data.class, data.staticClass]"
   >
     <!-- data.class, data.staticClass, -->

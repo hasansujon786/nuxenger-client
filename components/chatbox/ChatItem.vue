@@ -8,7 +8,7 @@
       <chat-bubble :msgBody="msg.body" />
     </div>
 
-    <div class="tools-wrapper">
+    <div class="tools-wrapper opacity-0">
       <dropdown :direction="isUser ? 'right-0' : ''" #default="{ ...otherProps }">
         <dropdown-item @onClick="mixDeleteAMessage(msg.id)" :func="otherProps"
           >Delete</dropdown-item
@@ -62,6 +62,16 @@ export default {
     .chat-bubble {
       @apply bg-green-600 text-white;
     }
+
+  }
+
+  &:hover {
+    .tools-wrapper {
+      opacity: 1;
+    }
+  }
+  .tools-wrapper:focus-within {
+    opacity: 1;
   }
 }
 </style>

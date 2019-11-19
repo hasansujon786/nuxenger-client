@@ -2,7 +2,7 @@
   <div class="dropdown relative">
     <a
       href="#"
-      class="dropdown__icon-link text-gray-600"
+      class="dropdown__icon-link block rounded-full text-gray-600 focus:bg-gray-300 focus:outline-none"
       ref="dropBtn"
       @click.prevent="handleToggle"
       @keydown.esc.exact="handleExit"
@@ -55,5 +55,3 @@ export default {
   }
 }
 </script>
-
-<style></style>

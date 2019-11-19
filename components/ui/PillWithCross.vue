@@ -1,5 +1,5 @@
 <template functional>
-  <li class="pillItems flex items-center pl-3 pr-2 mx-1 py-1 rounded-lg bg-primary select-none">
+  <li class="pillItems flex items-center pl-3 pr-2 mx-1 py-1 rounded-lg bg-green-300 text-green-900 select-none">
     <span class="block text-xs font-semibold truncate capitalize"> {{ props.name }} </span>
     <!-- <slot class="block text-sm font-semibold truncate capitalize"></slot> -->
     <a
