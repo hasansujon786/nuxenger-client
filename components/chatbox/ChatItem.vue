@@ -4,6 +4,7 @@
       <avater :title="msg.sender.name" size="sm" />
     </div>
 
+    <!-- TODO: Overflows for learger msgs  -->
     <div class="chat-bubble-wrapper mx-1">
       <chat-bubble :msgBody="msg.body" />
     </div>
