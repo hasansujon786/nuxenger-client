@@ -1,12 +1,12 @@
 <template>
-  <div class="chat-item flex items-center" :class="{ right: isUser }">
-    <div class="avater-wrapper self-start">
-      <avater :title="msg.sender.name" size="sm" />
+  <div class="chat-item flex items-center" :class="{ right: isUser, left: !isUser }">
+    <div class="avater-wrapper self-end -mb-5">
+      <avater class="" :name="msg.sender.name" size="sm" />
     </div>
 
     <!-- TODO: Overflows for learger msgs  -->
     <div class="chat-bubble-wrapper mx-1">
-      <chat-bubble :msgBody="msg.body" />
+      <chat-bubble class="rounded-none" :msgBody="msg.body" />
     </div>
 
     <div class="tools-wrapper opacity-0">
@@ -56,14 +56,23 @@ export default {
     justify-content: flex-end;
     .avater-wrapper {
       order: 10;
+      @apply ml-1;
     }
     .chat-bubble-wrapper {
       order: 9;
     }
     .chat-bubble {
-      @apply bg-green-600 text-white;
+      @apply bg-indigo-500 text-white rounded-br-none;
     }
+  }
 
+  &.left {
+    .avater-wrapper {
+      @apply mr-1;
+    }
+    .chat-bubble {
+      @apply rounded-bl-none;
+    }
   }
 
   &:hover {

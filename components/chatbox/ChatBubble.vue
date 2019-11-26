@@ -1,7 +1,7 @@
 <template functional>
   <div
-    class="chat-bubble bg-gray-300 px-6 py-3 inline-block text-sm max-w-lg"
-    style="border-radius: 20px;"
+    class="chat-bubble overflow-hidden bg-white shadow px-6 py-3 inline-block text-sm max-w-lg"
+    :class="[data.class, data.staticClass]"
   >
     {{ props.msgBody }}
   </div>
@@ -16,3 +16,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.chat-bubble {
+  border-radius: 20px;
+  word-wrap: break-word;
+}
+</style>

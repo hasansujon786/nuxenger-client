@@ -1,10 +1,12 @@
 <template functional>
   <div
     v-bind="data.attrs"
+    :title="props.name"
     class="bg-gray-400 rounded-full truncate flex items-center justify-center"
-    :class="[props.size, props.classname]"
+    :class="[props.size, data.class, data.staticClass]"
   >
     <img v-if="props.img" class="w-full h-full object-cover" :src="props.img" />
+    <div v-else-if="props.name" class="text-center select-none font-bold capitalize">{{ props.name.charAt() }}</div>
     <svg
       v-else
       xmlns="http://www.w3.org/2000/svg"
@@ -28,13 +30,11 @@
 export default {
   props: {
     img: String,
+    name: String,
     size: {
       type: String,
       default: 'md'
     },
-    classname: {
-      type: String
-    }
   }
 }
 </script>

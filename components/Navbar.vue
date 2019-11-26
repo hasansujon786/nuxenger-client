@@ -16,7 +16,7 @@
         @close="showDrop = false"
         @toggle="toggleDrop"
       >
-        <ui-avater :title="authUser.name" classname="ml-1"
+        <ui-avater :name="authUser.name" classname="ml-1"
       /></ui-dropdown>
     </section>
   </nav>
