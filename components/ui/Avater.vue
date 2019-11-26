@@ -2,7 +2,7 @@
   <div
     v-bind="data.attrs"
     :title="props.name"
-    class="bg-gray-400 rounded-full truncate flex items-center justify-center"
+    class="bg-gray-400 rounded-full truncate flex items-center justify-center text-gray-700"
     :class="[props.size, data.class, data.staticClass]"
   >
     <img v-if="props.img" class="w-full h-full object-cover" :src="props.img" />

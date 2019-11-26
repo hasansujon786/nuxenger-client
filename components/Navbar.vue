@@ -8,25 +8,50 @@
         nuxenger
       </h1>
 
-      <ui-icon icon="bell" />
-      <ui-dropdown
-        @item-click="handleUserDropdownClick"
-        :list="dropList"
-        :isOpen="showDrop"
-        @close="showDrop = false"
-        @toggle="toggleDrop"
-      >
-        <ui-avater :name="authUser.name" classname="ml-1"
-      /></ui-dropdown>
+      <div class="px-2 border-gray-400 ">
+        <icon icon="bell" />
+      </div>
+
+      <dropdown direction="left-0">
+        <template #icon>
+          <div class="flex">
+            <avater :name="authUser.name" />
+
+            <span class="ml-1">
+              <h2 class="font-bold capitalize text-sm text-gray-800">
+                {{ authUser.name }}
+                <svg
+                  class="inline text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="183.33 185.58 16 12"
+                  width="20"
+                  height="14"
+                >
+                  <defs><path d="M187.33 190.58l-3-4h12l-3 4-3 4-3-4z" id="a" /></defs>
+                  <use xlink:href="#a" fill="currentColor" />
+                </svg>
+              </h2>
+
+              <p class="text-xs text-gray-600 leading-none tracking-wider">Active</p>
+            </span>
+          </div>
+        </template>
+        <template #default="func">
+          <dropdown-item :func="func">Contacts</dropdown-item>
+          <dropdown-item :func="func">Settings</dropdown-item>
+          <dropdown-item @onClick="mixSignOutAuthUser" :func="func">Signout</dropdown-item>
+        </template>
+      </dropdown>
     </section>
   </nav>
 </template>
 
 <script>
-import Avater from '~/components/ui/Avater.vue'
-import Icon from '~/components/ui/Icon.vue'
-import DropdownVue from '~/components/ui/AccountDropdown.vue'
 import { authMixins } from '~/mixins'
+import Icon from '~/components/ui/Icon.vue'
+import Avater from '~/components/ui/Avater.vue'
+import Dropdown from '~/components/ui/Dropdown.vue'
+import DropdownItem from '~/components/ui/DropdownItem.vue'
 
 export default {
   data() {
@@ -64,9 +89,10 @@ export default {
     }
   },
   components: {
-    uiIcon: Icon,
-    uiAvater: Avater,
-    uiDropdown: DropdownVue
+    Icon,
+    Avater,
+    Dropdown,
+    DropdownItem
   },
   mixins: [authMixins]
 }

@@ -5,7 +5,7 @@
       class="px-3 flex justify-between items-center bg-app-light shadow border-b"
     >
       <div class="flex">
-        <ui-avater classname=""/>
+        <ui-avater />
         <span class="ml-1">
           <h2 class="font-bold capitalize text-sm text-gray-800">{{ head.title ? head.title : 'Loading...' }}</h2>
           <p class="text-xs text-gray-600 leading-none tracking-wider">Active</p>

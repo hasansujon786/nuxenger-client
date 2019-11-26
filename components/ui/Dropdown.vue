@@ -2,13 +2,15 @@
   <div class="dropdown relative">
     <a
       href="#"
-      class="dropdown__icon-link block rounded-full text-gray-600 focus:bg-gray-300 focus:outline-none"
+      class="dropdown__icon-link block rounded-full text-gray-600"
       ref="dropBtn"
       @click.prevent="handleToggle"
       @keydown.esc.exact="handleExit"
       @keydown.shift.tab="handleExit"
     >
-      <ui-icon :icon="icon" />
+      <slot name="icon">
+        <ui-icon :icon="icon" />
+      </slot>
     </a>
     <div
       v-if="isOpen"
@@ -39,7 +41,7 @@ export default {
     },
     direction: {
       type: String,
-      default: 'left-0',
+      default: 'left-0'
     }
   },
   methods: {
@@ -48,7 +50,7 @@ export default {
     },
     handleExit() {
       this.isOpen = false
-    },
+    }
   },
   components: {
     uiIcon: IconVue
