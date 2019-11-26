@@ -1,13 +1,16 @@
 <template>
-  <div class="_chat-page h-screen">
+  <div class="_chat-page" style="height: calc(100vh - 52px)">
     <section
       style="grid-area: chat-head"
-      class="px-3 flex justify-between items-center bg-gray-100 border-b"
+      class="px-3 flex justify-between items-center bg-app-light shadow border-b"
     >
-      <span>
-        <h2 class="font-semibold">{{ head.title ? head.title : 'Loading...' }}</h2>
-        <p class="text-xs text-gray-600 tracking-wider">Active</p>
-      </span>
+      <div class="flex">
+        <ui-avater classname=""/>
+        <span class="ml-1">
+          <h2 class="font-bold capitalize text-sm text-gray-800">{{ head.title ? head.title : 'Loading...' }}</h2>
+          <p class="text-xs text-gray-600 leading-none tracking-wider">Active</p>
+        </span>
+      </div>
       <ui-icon />
     </section>
 
@@ -28,6 +31,7 @@ import { mapGetters, mapActions } from 'vuex'
 import ChatInput from '~/components/chatbox/ChatInput.vue'
 import ChatItem from '~/components/chatbox/ChatItem.vue'
 import Icon from '~/components/ui/Icon.vue'
+import Avater from '~/components/ui/Avater.vue'
 
 export default {
   layout: 'app',
@@ -64,6 +68,7 @@ export default {
   components: {
     ChatItem,
     ChatInput,
+    uiAvater: Avater,
     uiIcon: Icon
   },
   mixins: [messageMixins]
@@ -73,7 +78,7 @@ export default {
 <style scoped>
 ._chat-page {
   display: grid;
-  grid-template-rows: 64px auto 90px;
+  grid-template-rows: 52px auto 90px;
   grid-template-areas:
     'chat-head'
     'chat-box'

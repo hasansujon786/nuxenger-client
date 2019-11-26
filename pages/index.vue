@@ -1,15 +1,6 @@
 <template>
   <div class="h-full">
-    <section
-      style="grid-area: chat-head"
-      class="px-3 flex h-16 justify-between items-center bg-gray-100 border-b"
-    >
-      <span>
-        <h2 class="font-semibold">Index page</h2>
-        <p class="text-xs text-gray-600 tracking-wider"></p>
-      </span>
-    </section>
-    <section></section>
+    index page
   </div>
 </template>
 

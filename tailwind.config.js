@@ -20,8 +20,13 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
-      primary: 'var(--primary)',
-      secondary: 'var(--secondary)',
+
+      app: {
+        light: '#fff',
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+
+      },
 
       gray: {
         100: '#f7fafc',

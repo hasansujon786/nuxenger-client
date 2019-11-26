@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-100 h-16 border-b flex ">
+  <nav class="navbar bg-app-light border-b flex " style="grid-area: navbar">
     <section class="flex items-center px-3 w-full">
       <h1
         style="font-size: 38px"

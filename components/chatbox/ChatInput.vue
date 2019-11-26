@@ -1,19 +1,13 @@
 <template>
   <form @submit.prevent="handleOnNewMsgSubmit" class="px-4 border flex items-center">
     <div
-      class="chat-input h-12 w-full rounded-lg border-2 border-gray-400 text-gray-900 flex items-stretch truncate tracking-wide text-base"
-      style="background: #EDF2F7"
+      class="chat-input shadow bg-white h-12 w-full rounded-lg border text-gray-900 flex items-stretch text-base"
     >
       <input
         v-model="newMsg"
         type="text"
-        class="bg-transparent outline-none flex-grow px-3"
-        placeholder="Type a message..."
-      />
-      <input
-        class="outline-none px-3 bg-gray-400 border-l border-gray-400 text-sm text-gray-600"
-        type="submit"
-        value="Send"
+        class="bg-transparent text-gray-800 placeholder-gray-600 outline-none flex-grow px-4 text-base"
+        placeholder="Write a message ..."
       />
     </div>
   </form>
@@ -44,7 +38,7 @@ export default {
 .chat-input {
   &:focus-within {
     & {
-      @apply border-gray-500;
+      @apply border-gray-400;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 border-r" style="grid-area: quicklink">
+  <div class="quick-link bg-app-light text-gray-700 border-r" style="grid-area: quicklink">
     <section class="flex flex-col items-center">
       <nuxt-link class="mt-3" to="/"><icon icon="compass" size="lg"/></nuxt-link>
       <a class="mt-2" href="#"><icon icon="message-sq" size="lg"/></a>
