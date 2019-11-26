@@ -12,7 +12,7 @@
         <icon icon="bell" />
       </div>
 
-      <dropdown direction="left-0">
+      <dropdown direction="right-0" width="150">
         <template #icon>
           <div class="flex">
             <avater :name="authUser.name" />
@@ -38,6 +38,7 @@
         </template>
         <template #default="func">
           <dropdown-item :func="func">Contacts</dropdown-item>
+          <dropdown-item :func="func">Turn of active status</dropdown-item>
           <dropdown-item :func="func">Settings</dropdown-item>
           <dropdown-item @onClick="mixSignOutAuthUser" :func="func">Signout</dropdown-item>
         </template>

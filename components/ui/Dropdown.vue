@@ -14,7 +14,8 @@
     </a>
     <div
       v-if="isOpen"
-      :class="direction"
+      :class="[direction]"
+      :style="{'min-width':  width + 'px'}"
       v-on-clickaway="handleExit"
       class="dropdown__palate absolute z-10 mt-1 bg-white border rounded shadow-md"
     >
@@ -38,6 +39,9 @@ export default {
     icon: {
       type: String,
       default: 'more-h'
+    },
+    width: {
+      default: 10
     },
     direction: {
       type: String,
