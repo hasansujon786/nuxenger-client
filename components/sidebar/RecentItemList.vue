@@ -1,6 +1,6 @@
 <template>
   <div style="min-width: 300px">
-    <sidebar-wrapper>
+    <sidebar-wrapper class="border-r">
       <div class="pl-2 pr-1 pt-1 pb-2">
         <recent-item
           v-for="chat in chatList"

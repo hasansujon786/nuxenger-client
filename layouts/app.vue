@@ -1,9 +1,9 @@
 <template>
   <section class="main-app-layout relative text-gray-800 font-sans">
+    <new-chat-model v-if="isChatModelOpen" />
     <QuickLink :authUser="authUser" class="sticky top-0 h-screen" />
     <Navbar class="sticky top-0" />
     <main style="grid-area: main; background: #EAEAEA">
-      <new-chat-model v-if="isChatModelOpen" class="" style="top: 5rem; left: 1rem" />
       <nuxt />
     </main>
   </section>
@@ -21,7 +21,7 @@ export default {
   computed: {
     ...mapGetters({
       isChatModelOpen: 'app/isChatModelOpen',
-      authUser: 'user/getauthUser',
+      authUser: 'user/getauthUser'
     })
   },
   created() {
@@ -30,7 +30,7 @@ export default {
   components: {
     Navbar,
     QuickLink,
-    NewChatModel,
+    NewChatModel
   },
   mixins: [authMixins]
 }

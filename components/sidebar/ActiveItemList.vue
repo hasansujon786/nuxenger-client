@@ -1,6 +1,6 @@
 <template>
   <div style="min-width: 200px">
-    <sidebar-wrapper>
+    <sidebar-wrapper class="border-l">
       <a v-for="item in 30" href="#" class="flex items-center my-2 px-2 py-2 hover:bg-gray-200">
         <Avater size="sm" />
         <span class="flex-grow ml-1 flex items-baseline justify-between">

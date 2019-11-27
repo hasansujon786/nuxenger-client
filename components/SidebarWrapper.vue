@@ -1,6 +1,6 @@
 <template functional>
   <div
-    class="overflow-y-scroll custom-scrollbar bg-app-light shadow z-40 sticky"
+    class="overflow-y-scroll custom-scrollbar bg-app-light z-40 sticky"
     :style="{ height: `calc(100vh - ${props.minusHeight}px)`, top: `${props.minusHeight}px` }"
     :class="[data.class, data.staticClass]"
   >
