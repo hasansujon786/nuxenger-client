@@ -7,14 +7,14 @@
       <div class="flex">
         <ui-avater />
         <span class="ml-1">
-          <h2 class="font-bold capitalize text-sm text-gray-800">{{ head.title ? head.title : 'Loading...' }}</h2>
+          <h2 class="font-semibold capitalize text-sm text-gray-800">{{ head.title ? head.title : 'Loading...' }}</h2>
           <p class="text-xs text-gray-600 leading-none tracking-wider">Active</p>
         </span>
       </div>
       <ui-icon />
     </section>
 
-    <section style="grid-area: chat-box" class="overflow-y-scroll">
+    <section style="grid-area: chat-box" class="custom-scrollbar">
       <div class="px-3 pb-6">
         <chat-item :msg="msg" v-for="msg in messages" :key="msg.id" class="mt-3" />
       </div>

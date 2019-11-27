@@ -1,6 +1,40 @@
 <template>
   <div class="h-full">
-    index page
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur minima quod, velit aliquid, reiciendis quidem. Voluptates voluptas nihil cum dolore provident, molestiae cumque? Aliquid non praesentium, ducimus alias voluptates voluptatem.</p>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
+    <h1 class="text-6xl">index page</h1>
   </div>
 </template>
 

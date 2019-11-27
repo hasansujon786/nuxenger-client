@@ -18,7 +18,7 @@
             <avater :name="authUser.name" />
 
             <span class="ml-1">
-              <h2 class="font-bold capitalize text-sm text-gray-800">
+              <h2 class="font-semibold capitalize text-sm text-gray-800">
                 {{ authUser.name }}
                 <svg
                   class="inline text-gray-400"
