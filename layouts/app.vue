@@ -2,13 +2,9 @@
   <section class="main-app-layout relative text-gray-800 font-sans">
     <QuickLink :authUser="authUser" class="sticky top-0 h-screen" />
     <Navbar class="sticky top-0" />
-    <main style="grid-area: main; background: #EAEAEA" class="flex">
-      <RecentItemList v-if="sidebarLeft === 'recent'" />
-      <div class="flex-grow relative">
-        <new-chat-model v-if="isChatModelOpen" class="" style="top: 5rem; left: 1rem" />
-        <nuxt />
-      </div>
-      <ActiveItemList v-if="sidebarRight === 'active'" />
+    <main style="grid-area: main; background: #EAEAEA">
+      <new-chat-model v-if="isChatModelOpen" class="" style="top: 5rem; left: 1rem" />
+      <nuxt />
     </main>
   </section>
 </template>
@@ -16,12 +12,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import { authMixins } from '~/mixins'
-import ActiveItemList from '~/components/sidebar/ActiveItemList.vue'
 import QuickLink from '~/components/QuickLink.vue'
 import NewChatModel from '~/components/ui/NewChatModel.vue'
 import Navbar from '~/components/Navbar.vue'
-import SidebarWrapper from '~/components/SidebarWrapper.vue'
-import RecentItemList from '~/components/sidebar/RecentItemList.vue'
 
 export default {
   name: 'applayout',
@@ -29,8 +22,6 @@ export default {
     ...mapGetters({
       isChatModelOpen: 'app/isChatModelOpen',
       authUser: 'user/getauthUser',
-      sidebarRight: 'app/sidebarRight',
-      sidebarLeft: 'app/sidebarLeft'
     })
   },
   created() {
@@ -40,9 +31,6 @@ export default {
     Navbar,
     QuickLink,
     NewChatModel,
-    ActiveItemList,
-    SidebarWrapper,
-    RecentItemList
   },
   mixins: [authMixins]
 }

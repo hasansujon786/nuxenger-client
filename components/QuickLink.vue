@@ -2,8 +2,8 @@
   <div class="quick-link bg-app-light text-gray-700 border-r" style="grid-area: quicklink">
     <section class="flex flex-col items-center">
       <nuxt-link class="mt-3" to="/"><icon icon="compass" size="lg"/></nuxt-link>
-      <a @click.prevent="toggleSidebarLeft('recent')"  class="mt-2" href="#"><icon icon="message-sq" size="lg"/></a>
-      <a @click.prevent="toggleSidebarRight('active')" class="mt-2" href="#"><icon icon="zap" size="lg"/></a>
+      <nuxt-link class="mt-2" :to="chatPageLink"><icon icon="message-sq" size="lg"/></nuxt-link>
+      <!-- <a class="mt-2" href="#"><icon icon="zap" size="lg"/></a> -->
       <a class="mt-2" @click.prevent="toggleChatModel" href="#"><icon icon="plus" size="lg"/></a>
     </section>
   </div>
@@ -20,13 +20,17 @@ export default {
       type: Object
     }
   },
+  computed: {
+    chatPageLink () {
+      const firstUser = this.$store.getters['chats/getChatList'][0]
+      return firstUser ? `/chats/${firstUser.id}` : '/chats'
+    }
+  },
   methods: {
     ...mapActions({
       toggleChatModel: 'app/toggleChatModel',
-      toggleSidebarRight: 'app/toggleSidebarRight',
-      toggleSidebarLeft: 'app/toggleSidebarLeft',
       handleChatSubscription: 'chats/handleChatSubscription',
-    })
+    }),
   },
   apollo: {
     // Subscriptions

@@ -1,26 +1,39 @@
 <template>
-  <div class="_chat-page" style="height: calc(100vh - 52px)">
-    <section
-      style="grid-area: chat-head"
-      class="px-3 flex justify-between items-center bg-app-light shadow border-b"
-    >
-      <div class="flex">
-        <ui-avater />
-        <span class="ml-1">
-          <h2 class="font-semibold capitalize text-sm text-gray-800">{{ head.title ? head.title : 'Loading...' }}</h2>
-          <p class="text-xs text-gray-600 leading-none tracking-wider">Active</p>
-        </span>
+  <div class="flex" style="height: calc(100vh - 52px)">
+    <RecentItemList />
+    <section class="_chat-page flex-grow">
+      <!-- head -->
+      <div
+        style="grid-area: chat-head"
+        class="px-3 flex justify-between items-center bg-app-light shadow border-b"
+      >
+        <div class="flex">
+          <Avater />
+          <span class="ml-1">
+            <h2 class="font-semibold capitalize text-sm text-gray-800">
+              {{ head.title ? head.title : 'Loading...' }}
+            </h2>
+            <p class="text-xs text-gray-600 leading-none tracking-wider">Active</p>
+          </span>
+        </div>
+        <div class="flex">
+          <Icon />
+          <a @click.prevent="toggleSidebarRight('active')" href="#" title="Active Users">
+            <Icon icon="zap" />
+          </a>
+        </div>
       </div>
-      <ui-icon />
-    </section>
+      <!-- head end -->
 
-    <section style="grid-area: chat-box" class="custom-scrollbar">
-      <div class="px-3 pb-6">
-        <chat-item :msg="msg" v-for="msg in messages" :key="msg.id" class="mt-3" />
+      <div style="grid-area: chat-box" class="custom-scrollbar">
+        <div class="px-3 pb-6">
+          <chat-item :msg="msg" v-for="msg in messages" :key="msg.id" class="mt-3" />
+        </div>
       </div>
-    </section>
 
-    <chat-input style="grid-area: chat-input" class="" />
+      <chat-input style="grid-area: chat-input" class="" />
+    </section>
+    <ActiveItemList v-if="sidebarRight === 'active'" />
   </div>
 </template>
 
@@ -32,10 +45,17 @@ import ChatInput from '~/components/chatbox/ChatInput.vue'
 import ChatItem from '~/components/chatbox/ChatItem.vue'
 import Icon from '~/components/ui/Icon.vue'
 import Avater from '~/components/ui/Avater.vue'
+import RecentItemList from '~/components/sidebar/RecentItemList.vue'
+import ActiveItemList from '~/components/sidebar/ActiveItemList.vue'
 
 export default {
   layout: 'app',
   middleware: 'auth',
+  data() {
+    return {
+      sidebarRight: 'active'
+    }
+  },
   computed: {
     ...mapGetters({ head: 'messages/head', messages: 'messages/messages' })
   },
@@ -45,7 +65,10 @@ export default {
   methods: {
     ...mapActions({
       handleMessageSubscription: 'messages/handleMessageSubscription'
-    })
+    }),
+    toggleSidebarRight(payload) {
+      this.sidebarRight = this.sidebarRight === payload ? '' : payload
+    }
   },
   apollo: {
     // Subscriptions
@@ -68,8 +91,10 @@ export default {
   components: {
     ChatItem,
     ChatInput,
-    uiAvater: Avater,
-    uiIcon: Icon
+    Avater,
+    Icon,
+    RecentItemList,
+    ActiveItemList
   },
   mixins: [messageMixins]
 }
