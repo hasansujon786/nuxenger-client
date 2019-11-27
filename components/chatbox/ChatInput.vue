@@ -26,11 +26,10 @@ export default {
     handleOnNewMsgSubmit() {
       // TODO : Validate from submition
       if (!this.newMsg) return
-      this.mixSendMessage({ chatId: this.$route.params.chatId, body: this.newMsg })
+      this.$emit('submit', this.newMsg)
       this.newMsg = ''
     }
-  },
-  mixins: [messageMixins]
+  }
 }
 </script>
 

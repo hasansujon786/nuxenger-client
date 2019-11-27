@@ -1,6 +1,6 @@
 <template>
   <div class="chat-item flex items-center" :class="{ right: isUser, left: !isUser }">
-    <div class="avater-wrapper self-end -mb-5">
+    <div class="avater-wrapper self-end ">
       <avater class="" :name="msg.sender.name" size="sm" />
     </div>
 

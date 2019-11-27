@@ -25,13 +25,13 @@
       </div>
       <!-- head end -->
 
-      <div style="grid-area: chat-box" class="custom-scrollbar">
+      <div id="chat-box" style="grid-area: chat-box" class="custom-scrollbar">
         <div class="px-3 pb-6">
           <chat-item :msg="msg" v-for="msg in messages" :key="msg.id" class="mt-3" />
         </div>
       </div>
 
-      <chat-input style="grid-area: chat-input" class="" />
+      <chat-input @submit="sendNewMessage" style="grid-area: chat-input" class="" />
     </section>
     <ActiveItemList v-if="sidebarRight === 'active'" />
   </div>
@@ -68,6 +68,9 @@ export default {
     }),
     toggleSidebarRight(payload) {
       this.sidebarRight = this.sidebarRight === payload ? '' : payload
+    },
+    sendNewMessage(newMsg) {
+      this.mixSendMessage({ chatId: this.$route.params.chatId, body: newMsg })
     }
   },
   apollo: {
@@ -84,6 +87,12 @@ export default {
         result({ data }) {
           // TODO: update last msg on new msg
           this.handleMessageSubscription(data.message)
+          if (data.message.mutation === 'NEW_MESSAGE') {
+            setTimeout(() => {
+              const chatBox = document.getElementById('chat-box')
+              chatBox.scrollTo({ top: chatBox.scrollHeight, left: 0, behavior: 'auto' })
+            }, 0)
+          }
         }
       }
     }
